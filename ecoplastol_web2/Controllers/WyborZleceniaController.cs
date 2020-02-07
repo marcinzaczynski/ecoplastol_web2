@@ -32,17 +32,21 @@ namespace ecoplastol_web2.Controllers
             switch (submitButton)
             {
                 case "Wyszukaj zlecenia":
-                        break;
+                    return View(wzm);
+                    break;
                 case "Pokaż meldunki":
                     wzm.Zlecenie = _wzm.ListaZlecen.Where(m => m.id == _wzm.Zlecenie.id).FirstOrDefault();
+                    return HttpNotFound();
                     break;
                 case "Utwórz meldunek":
                     wzm.Zlecenie = _wzm.ListaZlecen.Where(m => m.id == _wzm.Zlecenie.id).FirstOrDefault();
+                    return HttpNotFound();
                     break;
                 default:
+                    return HttpNotFound();
                     break;
             }
-            return View(wzm);
+            
             //return HttpNotFound();
         }
 
