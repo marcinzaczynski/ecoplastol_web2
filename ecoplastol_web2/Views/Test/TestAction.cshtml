@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ecoplastol_web2.Controllers.TestClass>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Int1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Str1)
+            </th>
+            <th></th>
+        </tr>
+
+
+
+    </table>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Zaloguj" class="btn btn-default" />
+        </div>
+    </div>
+
+}

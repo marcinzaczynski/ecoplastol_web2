@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ecoplastolModel.Store" Provider="Npgsql" ProviderManifestToken="10.11" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="brygadzisci">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" Nullable="false" />
+          <Property Name="imie" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nazwisko" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="opw" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="czasw" Type="timestamp" Nullable="false" />
+          <Property Name="opm" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="czasm" Type="timestamp" Nullable="false" />
+        </EntityType>
+        <EntityType Name="maszyny">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" Nullable="false" />
+          <Property Name="nazwa" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="opw" Type="varchar" MaxLength="20" />
+          <Property Name="czasw" Type="timestamp" Nullable="false" />
+          <Property Name="opm" Type="varchar" MaxLength="20" />
+          <Property Name="czasm" Type="timestamp" Nullable="false" />
+        </EntityType>
+        <EntityType Name="operatorzy_maszyn">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" Nullable="false" />
+          <Property Name="imie" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nazwisko" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="haslo" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="aktywny" Type="bool" Nullable="false" />
+          <Property Name="brygada" Type="int4" Nullable="false" />
+          <Property Name="opw" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="czasw" Type="timestamp" Nullable="false" />
+          <Property Name="opm" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="czasm" Type="timestamp" Nullable="false" />
+        </EntityType>
+        <EntityType Name="zlecenia_produkcyjne">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" Nullable="false" />
+          <Property Name="wyrob_kod_id" Type="int4" Nullable="false" />
+          <Property Name="wyrob_kod" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="wyrob_kod_indeks" Type="varchar" MaxLength="20" />
+          <Property Name="wyrob_kod_opis" Type="varchar" MaxLength="100" />
+          <Property Name="wyrob_typ" Type="int4" Nullable="false" />
+          <Property Name="wyrob_il_w_op_zb" Type="int4" Nullable="false" />
+          <Property Name="wyrob_waga_op" Type="int4" Nullable="false" />
+          <Property Name="wyrob_waga_1szt" Type="int4" Nullable="false" />
+          <Property Name="wyrob_zakres_sdr" Type="int4" Nullable="false" />
+          <Property Name="wyrob_zast_zaworu" Type="int4" />
+          <Property Name="wyrob_rodzaj_drutu" Type="int4" />
+          <Property Name="wyrob_norma" Type="int4" Nullable="false" />
+          <Property Name="wyrob_il_w_partii" Type="int4" Nullable="false" />
+          <Property Name="zlecenie_nr_maszyny" Type="int4" Nullable="false" />
+          <Property Name="zlecenie_ilosc" Type="int4" Nullable="false" />
+          <Property Name="zlecenie_data_rozp" Type="date" Nullable="false" />
+          <Property Name="zlecenie_data_zak" Type="date" Nullable="false" />
+          <Property Name="zlecenie_nr_partii_surowca" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="zlecenie_nr_partii_drutu" Type="varchar" MaxLength="20" />
+          <Property Name="itf_kategoria" Type="int4" Nullable="false" />
+          <Property Name="itf_znak1" Type="int4" Nullable="false" />
+          <Property Name="itf_znak2" Type="int4" Nullable="false" />
+          <Property Name="itf_icc" Type="int4" Nullable="false" />
+          <Property Name="itf_cc1" Type="int4" Nullable="false" />
+          <Property Name="itf_cc2" Type="int4" Nullable="false" />
+          <Property Name="itf_smin" Type="int4" Nullable="false" />
+          <Property Name="itf_smax" Type="int4" Nullable="false" />
+          <Property Name="itf_trn" Type="int4" Nullable="false" />
+          <Property Name="itf_prn" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="itf_rez" Type="numeric" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="itf_odch" Type="int4" Nullable="false" />
+          <Property Name="itf_cz1" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="itf_cz2" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="itf_ke" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="trace_znak1" Type="int4" Nullable="false" />
+          <Property Name="trace_znak2" Type="int4" Nullable="false" />
+          <Property Name="trace_kategoria" Type="int4" Nullable="false" />
+          <Property Name="trace_smin" Type="int4" Nullable="false" />
+          <Property Name="trace_smax" Type="int4" Nullable="false" />
+          <Property Name="trace_partia" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="trace_producent" Type="int4" Nullable="false" />
+          <Property Name="trace_sdr" Type="int4" Nullable="false" />
+          <Property Name="trace_pe_m" Type="int4" Nullable="false" />
+          <Property Name="trace_material" Type="int4" Nullable="false" />
+          <Property Name="trace_pe_o" Type="int4" Nullable="false" />
+          <Property Name="trace_mfr" Type="int4" Nullable="false" />
+          <Property Name="opw" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="czasw" Type="timestamp" Nullable="false" />
+          <Property Name="opm" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="czasm" Type="timestamp" Nullable="false" />
+        </EntityType>
+        <EntityType Name="zmiany">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" Nullable="false" />
+          <Property Name="nazwa" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="opw" Type="varchar" MaxLength="20" />
+          <Property Name="czasw" Type="timestamp" Nullable="false" />
+          <Property Name="opm" Type="varchar" MaxLength="20" />
+          <Property Name="czasm" Type="timestamp" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ecoplastolModelStoreContainer">
+          <EntitySet Name="brygadzisci" EntityType="Self.brygadzisci" Schema="public" store:Type="Tables" />
+          <EntitySet Name="maszyny" EntityType="Self.maszyny" Schema="public" store:Type="Tables" />
+          <EntitySet Name="operatorzy_maszyn" EntityType="Self.operatorzy_maszyn" Schema="public" store:Type="Tables" />
+          <EntitySet Name="zlecenia_produkcyjne" EntityType="Self.zlecenia_produkcyjne" Schema="public" store:Type="Tables" />
+          <EntitySet Name="zmiany" EntityType="Self.zmiany" Schema="public" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ecoplastolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="brygadzisci">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="imie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nazwisko" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="opw" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="czasw" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="opm" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="czasm" Type="DateTime" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="maszyny">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nazwa" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="opw" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="czasw" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="opm" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="czasm" Type="DateTime" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="operatorzy_maszyn">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="imie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nazwisko" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="login" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="haslo" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="aktywny" Type="Boolean" Nullable="false" />
+          <Property Name="brygada" Type="Int32" Nullable="false" />
+          <Property Name="opw" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="czasw" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="opm" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="czasm" Type="DateTime" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="zmiany">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nazwa" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="opw" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="czasw" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="opm" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="czasm" Type="DateTime" Precision="6" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ecoplastolEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="brygadzisci" EntityType="Self.brygadzisci" />
+          <EntitySet Name="maszyny" EntityType="Self.maszyny" />
+          <EntitySet Name="operatorzy_maszyn" EntityType="Self.operatorzy_maszyn" />
+          <EntitySet Name="zmiany" EntityType="Self.zmiany" />
+          <EntitySet Name="zlecenia_produkcyjne" EntityType="ecoplastolModel.zlecenia_produkcyjne" />
+        </EntityContainer>
+        <EntityType Name="zlecenia_produkcyjne">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="wyrob_kod_id" Type="Int32" Nullable="false" />
+          <Property Name="wyrob_kod" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="wyrob_kod_indeks" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="wyrob_kod_opis" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="wyrob_typ" Type="Int32" Nullable="false" />
+          <Property Name="wyrob_il_w_op_zb" Type="Int32" Nullable="false" />
+          <Property Name="wyrob_waga_op" Type="Int32" Nullable="false" />
+          <Property Name="wyrob_waga_1szt" Type="Int32" Nullable="false" />
+          <Property Name="wyrob_zakres_sdr" Type="Int32" Nullable="false" />
+          <Property Name="wyrob_zast_zaworu" Type="Int32" />
+          <Property Name="wyrob_rodzaj_drutu" Type="Int32" />
+          <Property Name="wyrob_norma" Type="Int32" Nullable="false" />
+          <Property Name="wyrob_il_w_partii" Type="Int32" Nullable="false" />
+          <Property Name="zlecenie_nr_maszyny" Type="Int32" Nullable="false" />
+          <Property Name="zlecenie_ilosc" Type="Int32" Nullable="false" />
+          <Property Name="zlecenie_data_rozp" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="zlecenie_data_zak" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="zlecenie_nr_partii_surowca" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="zlecenie_nr_partii_drutu" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="itf_kategoria" Type="Int32" Nullable="false" />
+          <Property Name="itf_znak1" Type="Int32" Nullable="false" />
+          <Property Name="itf_znak2" Type="Int32" Nullable="false" />
+          <Property Name="itf_icc" Type="Int32" Nullable="false" />
+          <Property Name="itf_cc1" Type="Int32" Nullable="false" />
+          <Property Name="itf_cc2" Type="Int32" Nullable="false" />
+          <Property Name="itf_smin" Type="Int32" Nullable="false" />
+          <Property Name="itf_smax" Type="Int32" Nullable="false" />
+          <Property Name="itf_trn" Type="Int32" Nullable="false" />
+          <Property Name="itf_prn" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="itf_rez" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="itf_odch" Type="Int32" Nullable="false" />
+          <Property Name="itf_cz1" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="itf_cz2" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="itf_ke" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="trace_znak1" Type="Int32" Nullable="false" />
+          <Property Name="trace_znak2" Type="Int32" Nullable="false" />
+          <Property Name="trace_kategoria" Type="Int32" Nullable="false" />
+          <Property Name="trace_smin" Type="Int32" Nullable="false" />
+          <Property Name="trace_smax" Type="Int32" Nullable="false" />
+          <Property Name="trace_partia" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="trace_producent" Type="Int32" Nullable="false" />
+          <Property Name="trace_sdr" Type="Int32" Nullable="false" />
+          <Property Name="trace_pe_m" Type="Int32" Nullable="false" />
+          <Property Name="trace_material" Type="Int32" Nullable="false" />
+          <Property Name="trace_pe_o" Type="Int32" Nullable="false" />
+          <Property Name="trace_mfr" Type="Int32" Nullable="false" />
+          <Property Name="opw" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="czasw" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="opm" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="czasm" Type="DateTime" Nullable="false" Precision="6" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ecoplastolModelStoreContainer" CdmEntityContainer="ecoplastolEntities">
+          <EntitySetMapping Name="brygadzisci">
+            <EntityTypeMapping TypeName="ecoplastolModel.brygadzisci">
+              <MappingFragment StoreEntitySet="brygadzisci">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="imie" ColumnName="imie" />
+                <ScalarProperty Name="nazwisko" ColumnName="nazwisko" />
+                <ScalarProperty Name="opw" ColumnName="opw" />
+                <ScalarProperty Name="czasw" ColumnName="czasw" />
+                <ScalarProperty Name="opm" ColumnName="opm" />
+                <ScalarProperty Name="czasm" ColumnName="czasm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="maszyny">
+            <EntityTypeMapping TypeName="ecoplastolModel.maszyny">
+              <MappingFragment StoreEntitySet="maszyny">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+                <ScalarProperty Name="opw" ColumnName="opw" />
+                <ScalarProperty Name="czasw" ColumnName="czasw" />
+                <ScalarProperty Name="opm" ColumnName="opm" />
+                <ScalarProperty Name="czasm" ColumnName="czasm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="operatorzy_maszyn">
+            <EntityTypeMapping TypeName="ecoplastolModel.operatorzy_maszyn">
+              <MappingFragment StoreEntitySet="operatorzy_maszyn">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="imie" ColumnName="imie" />
+                <ScalarProperty Name="nazwisko" ColumnName="nazwisko" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="haslo" ColumnName="haslo" />
+                <ScalarProperty Name="aktywny" ColumnName="aktywny" />
+                <ScalarProperty Name="brygada" ColumnName="brygada" />
+                <ScalarProperty Name="opw" ColumnName="opw" />
+                <ScalarProperty Name="czasw" ColumnName="czasw" />
+                <ScalarProperty Name="opm" ColumnName="opm" />
+                <ScalarProperty Name="czasm" ColumnName="czasm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="zmiany">
+            <EntityTypeMapping TypeName="ecoplastolModel.zmiany">
+              <MappingFragment StoreEntitySet="zmiany">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+                <ScalarProperty Name="opw" ColumnName="opw" />
+                <ScalarProperty Name="czasw" ColumnName="czasw" />
+                <ScalarProperty Name="opm" ColumnName="opm" />
+                <ScalarProperty Name="czasm" ColumnName="czasm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="zlecenia_produkcyjne">
+            <EntityTypeMapping TypeName="ecoplastolModel.zlecenia_produkcyjne">
+              <MappingFragment StoreEntitySet="zlecenia_produkcyjne">
+                <ScalarProperty Name="czasm" ColumnName="czasm" />
+                <ScalarProperty Name="opm" ColumnName="opm" />
+                <ScalarProperty Name="czasw" ColumnName="czasw" />
+                <ScalarProperty Name="opw" ColumnName="opw" />
+                <ScalarProperty Name="trace_mfr" ColumnName="trace_mfr" />
+                <ScalarProperty Name="trace_pe_o" ColumnName="trace_pe_o" />
+                <ScalarProperty Name="trace_material" ColumnName="trace_material" />
+                <ScalarProperty Name="trace_pe_m" ColumnName="trace_pe_m" />
+                <ScalarProperty Name="trace_sdr" ColumnName="trace_sdr" />
+                <ScalarProperty Name="trace_producent" ColumnName="trace_producent" />
+                <ScalarProperty Name="trace_partia" ColumnName="trace_partia" />
+                <ScalarProperty Name="trace_smax" ColumnName="trace_smax" />
+                <ScalarProperty Name="trace_smin" ColumnName="trace_smin" />
+                <ScalarProperty Name="trace_kategoria" ColumnName="trace_kategoria" />
+                <ScalarProperty Name="trace_znak2" ColumnName="trace_znak2" />
+                <ScalarProperty Name="trace_znak1" ColumnName="trace_znak1" />
+                <ScalarProperty Name="itf_ke" ColumnName="itf_ke" />
+                <ScalarProperty Name="itf_cz2" ColumnName="itf_cz2" />
+                <ScalarProperty Name="itf_cz1" ColumnName="itf_cz1" />
+                <ScalarProperty Name="itf_odch" ColumnName="itf_odch" />
+                <ScalarProperty Name="itf_rez" ColumnName="itf_rez" />
+                <ScalarProperty Name="itf_prn" ColumnName="itf_prn" />
+                <ScalarProperty Name="itf_trn" ColumnName="itf_trn" />
+                <ScalarProperty Name="itf_smax" ColumnName="itf_smax" />
+                <ScalarProperty Name="itf_smin" ColumnName="itf_smin" />
+                <ScalarProperty Name="itf_cc2" ColumnName="itf_cc2" />
+                <ScalarProperty Name="itf_cc1" ColumnName="itf_cc1" />
+                <ScalarProperty Name="itf_icc" ColumnName="itf_icc" />
+                <ScalarProperty Name="itf_znak2" ColumnName="itf_znak2" />
+                <ScalarProperty Name="itf_znak1" ColumnName="itf_znak1" />
+                <ScalarProperty Name="itf_kategoria" ColumnName="itf_kategoria" />
+                <ScalarProperty Name="zlecenie_nr_partii_drutu" ColumnName="zlecenie_nr_partii_drutu" />
+                <ScalarProperty Name="zlecenie_nr_partii_surowca" ColumnName="zlecenie_nr_partii_surowca" />
+                <ScalarProperty Name="zlecenie_data_zak" ColumnName="zlecenie_data_zak" />
+                <ScalarProperty Name="zlecenie_data_rozp" ColumnName="zlecenie_data_rozp" />
+                <ScalarProperty Name="zlecenie_ilosc" ColumnName="zlecenie_ilosc" />
+                <ScalarProperty Name="zlecenie_nr_maszyny" ColumnName="zlecenie_nr_maszyny" />
+                <ScalarProperty Name="wyrob_il_w_partii" ColumnName="wyrob_il_w_partii" />
+                <ScalarProperty Name="wyrob_norma" ColumnName="wyrob_norma" />
+                <ScalarProperty Name="wyrob_rodzaj_drutu" ColumnName="wyrob_rodzaj_drutu" />
+                <ScalarProperty Name="wyrob_zast_zaworu" ColumnName="wyrob_zast_zaworu" />
+                <ScalarProperty Name="wyrob_zakres_sdr" ColumnName="wyrob_zakres_sdr" />
+                <ScalarProperty Name="wyrob_waga_1szt" ColumnName="wyrob_waga_1szt" />
+                <ScalarProperty Name="wyrob_waga_op" ColumnName="wyrob_waga_op" />
+                <ScalarProperty Name="wyrob_il_w_op_zb" ColumnName="wyrob_il_w_op_zb" />
+                <ScalarProperty Name="wyrob_typ" ColumnName="wyrob_typ" />
+                <ScalarProperty Name="wyrob_kod_opis" ColumnName="wyrob_kod_opis" />
+                <ScalarProperty Name="wyrob_kod_indeks" ColumnName="wyrob_kod_indeks" />
+                <ScalarProperty Name="wyrob_kod" ColumnName="wyrob_kod" />
+                <ScalarProperty Name="wyrob_kod_id" ColumnName="wyrob_kod_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

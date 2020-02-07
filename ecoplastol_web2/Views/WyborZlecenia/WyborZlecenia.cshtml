@@ -1,0 +1,83 @@
+﻿@model ecoplastol_web2.Models.WyborZleceniaModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <table class="table">
+        <tr>
+            <th>
+                <p>Operator</p>
+            </th>
+            <th>
+                <p>Brygadzista</p>
+            </th>
+            <th>
+                <p>Zmiana</p>
+            </th>
+            <th>
+                <p>Maszyna</p>
+            </th>
+            <th>
+                <p>Data produkcji</p>
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Model.Operator.NazwaOperatora
+                @Html.DropDownListFor(model => model.Operator.id,
+                            new SelectList(Model.ListaOperatorow, "id", "NazwaOperatora"),
+                            new { @class = "hidden" })
+            </td>
+            <td>
+                @Html.DropDownListFor(model => model.Brygadzista.id,
+                            new SelectList(Model.ListaBrygadzistow, "id", "NazwaBrygadzisty"),
+                            /*new { htmlAttributes = new { @class = "form-control" } })*/
+                            new { @class = "form-control" })
+            </td>
+            <td>
+                @Html.DropDownListFor(model => model.Zmiana.id,
+                                       new SelectList(Model.ListaZmian, "id", "nazwa"),
+                                       new { @class = "form-control" })
+            <td>
+                @Html.DropDownListFor(model => model.Maszyna.id,
+                                       new SelectList(Model.ListaMaszyn, "id", "nazwa"),
+                                      new { @class = "form-control" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.DataProdukcji, String.Format("{0:d}", Model.DataProdukcji.ToShortDateString()),
+         new { @class = "datefield form-control", type = "date" })
+                @*@Html.EditorFor(model => model.DataProdukcji, new { @class = "date-picker", type = "date" })*@
+
+            </td>
+        </tr>
+    </table>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" name="submitButton" value="Wyszukaj zlecenia 1" class="btn btn-default" />
+            <input type="submit" name="submitButton" value="Wyszukaj zlecenia 2" class="btn btn-default" />
+        </div>
+    </div>
+
+}
+<hr />
+@{
+    if (Model.ListaZlecen == null)
+    {
+        <p>brak zleceń</p>
+    }
+    else
+    {
+        <p>lista zleceń</p>
+        @Html.DropDownListFor(model => model.Zlecenie.id,
+                                      new SelectList(Model.ListaZlecen, "id", "NazwaZlecenia"),
+                                      new { @class = "form-control" })
+    }
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
