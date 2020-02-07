@@ -31,9 +31,13 @@ namespace ecoplastol_web2.Controllers
             wzm.ListaZlecen = wzm.PobierzZlecenia(wzm.Maszyna.id, wzm.DataProdukcji);
             switch (submitButton)
             {
-                case "Wyszukaj zlecenia 1":
+                case "Wyszukaj zlecenia":
                         break;
-                case "Wyszukaj zlecenia 2":
+                case "Pokaż meldunki":
+                    wzm.Zlecenie = _wzm.ListaZlecen.Where(m => m.id == _wzm.Zlecenie.id).FirstOrDefault();
+                    break;
+                case "Utwórz meldunek":
+                    wzm.Zlecenie = _wzm.ListaZlecen.Where(m => m.id == _wzm.Zlecenie.id).FirstOrDefault();
                     break;
                 default:
                     break;

@@ -58,26 +58,37 @@
     </table>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" name="submitButton" value="Wyszukaj zlecenia 1" class="btn btn-default" />
-            <input type="submit" name="submitButton" value="Wyszukaj zlecenia 2" class="btn btn-default" />
+            <input type="submit" name="submitButton" value="Wyszukaj zlecenia" class="btn btn-default" />
         </div>
     </div>
 
+
+    if (Model.ListaZlecen != null)
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    <p>Zlecenie</p>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DropDownListFor(model => model.Zlecenie.id,
+                                           new SelectList(Model.ListaZlecen, "id", "NazwaZlecenia"),
+                                           new { @class = "form-control" })
+                </td>
+            </tr>
+        </table>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" name="submitButton" value="Pokaż meldunki" class="btn btn-default" />
+                <input type="submit" name="submitButton" value="Utwórz meldunek" class="btn btn-default" />
+            </div>
+        </div>
+    }
 }
 <hr />
-@{
-    if (Model.ListaZlecen == null)
-    {
-        <p>brak zleceń</p>
-    }
-    else
-    {
-        <p>lista zleceń</p>
-        @Html.DropDownListFor(model => model.Zlecenie.id,
-                                      new SelectList(Model.ListaZlecen, "id", "NazwaZlecenia"),
-                                      new { @class = "form-control" })
-    }
-}
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
