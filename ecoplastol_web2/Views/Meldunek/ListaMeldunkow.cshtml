@@ -1,69 +1,73 @@
 ﻿@model ecoplastol_web2.Models.MeldunekViewModel
 
 
-    <p>
-        @Html.ActionLink("Create New", "DodajMeldunek", new { id_zlecenie = @Model.Wzm.IdZlecenie, 
-                                                              id_operator = @Model.Wzm.IdOperator, 
-                                                              id_brygadzista = @Model.Wzm.IdBrygadzista, 
-                                                              zmiana =  @Model.Wzm.IdMaszyna, 
-                                                              data_meldunku = @Model.Wzm.DataMeldunku })
-    </p>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Dane operatora</h3>
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-3"><h3>@Model.Wzm.Operator.NazwaOperatora</h3></div>
-                <div class="col-md-3"><h3>@Model.Wzm.Maszyna.nazwa</h3></div>
-                <div class="col-md-3"><h3>@Model.Wzm.Zlecenie.NazwaZlecenia</h3></div>
-                <div class="col-md-3"><h3>@Model.Wzm.DataMeldunku</h3></div>
-            </div>
+<button class="btn">
+    @Html.ActionLink("Create New", "DodajMeldunek", new
+    {
+        id_operator = @Model.Wzm.IdOperator,
+        id_brygadzista = @Model.Wzm.IdBrygadzista,
+        id_maszyna = Model.Wzm.IdMaszyna,
+        zmiana = @Model.Wzm.IdMaszyna,
+        id_zlecenie = @Model.Wzm.IdZlecenie,
+        data_meldunku = @Model.Wzm.DataMeldunku
+    })
+</button>
+@Html.ActionLink("Create New", "DodajMeldunek", new
+{
+    id_operator = @Model.Wzm.IdOperator,
+    id_brygadzista = @Model.Wzm.IdBrygadzista,
+    id_maszyna = Model.Wzm.IdMaszyna,
+    zmiana = @Model.Wzm.IdMaszyna,
+    id_zlecenie = @Model.Wzm.IdZlecenie,
+    data_meldunku = @Model.Wzm.DataMeldunku
+
+},  new { htmlAttributes = new { @class = "btn btn-default" } })
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Dane operatora</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3"><h3>@Model.Wzm.Operator.NazwaOperatora</h3></div>
+            <div class="col-md-3"><h3>@Model.Wzm.Maszyna.nazwa</h3></div>
+            <div class="col-md-3"><h3>@Model.Wzm.Zlecenie.NazwaZlecenia</h3></div>
+            <div class="col-md-3"><h3>@Model.Wzm.DataMeldunku</h3></div>
         </div>
     </div>
-
-    @{ 
-        if ((Model.ListaMeldunkow != null) && (Model.ListaMeldunkow.Count > 0))
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Lista meldunków</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-1"><h5>Ilość<br />(ocena pozytywna)</h5></div>
+            <div class="col-md-1"><h5>Ilość<br />(ocena negatywna)</h5></div>
+            <div class="col-md-1"><h5>Ilość<br />(wady technologiczne)</h5></div>
+            <div class="col-md-2"><h5>Przegląd codzienny maszyny</h5></div>
+            <div class="col-md-2"><h5>Nadzorowane parametry wtryskarki</h5></div>
+            <div class="col-md-2"><h5>Wygląd zewnętrzny</h5></div>
+            <div class="col-md-2"><h5>Wygląd grzejnika</h5></div>
+        </div>
+        @if ((Model.ListaMeldunkow != null) && (Model.ListaMeldunkow.Count > 0))
         {
-
-            <p>Meldunki</p>
-            <table class="table">
-                <tr>
-                    <th>
-                        Ilość (ocena pozytywna)
-                    </th>
-                    <th>
-                        Ilość (ocena negatywna)
-                    </th>
-                    <th>
-                        Ilość (wady technologiczne)
-                    </th>
-                    <th>
-                        Przegląd codzienny maszyny
-                    </th>
-                    <th>
-                        Nadzorowane parametry wtryskarki
-                    </th>
-                    <th>
-                        Wygląd zewnętrzny
-                    </th>
-                    <th>
-                        Wygląd grzejnika
-                    </th>
-                </tr>
-                @foreach (var item in Model.ListaMeldunkow)
-                {
-                    <tr>
-                        <td>@item.ilosc</td>
-                        <td>@item.ilosc_wad_nn</td>
-                        <td>@item.ilosc_techn</td>
-                        <td>@item.opis_przeglad_codzienny_maszyny</td>
-                        <td>@item.opis_wynik_spr_wtr</td>
-                        <td>@item.opis_wyglad_zew</td>
-                        <td>@item.opis_wyglad_grzejnika</td>
-                    </tr>
-                }
-            </table>
+            foreach (var item in Model.ListaMeldunkow)
+            {
+                <div class="row">
+                    <div class="col-md-1"><h4>@item.ilosc</h4></div>
+                    <div class="col-md-1"><h4>@item.ilosc_wad_nn</h4></div>
+                    <div class="col-md-1"><h4>@item.ilosc_techn</h4></div>
+                    <div class="col-md-2"><h4>@item.opis_przeglad_codzienny_maszyny</h4></div>
+                    <div class="col-md-2"><h4>@item.opis_wynik_spr_wtr</h4></div>
+                    <div class="col-md-2"><h4>@item.opis_wyglad_zew</h4></div>
+                    <div class="col-md-2"><h4>@item.opis_wyglad_grzejnika</h4></div>
+                </div>
+            }
         }
-    }
+    </div>
+</div>
+
+
+
 

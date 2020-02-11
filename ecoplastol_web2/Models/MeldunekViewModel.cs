@@ -14,16 +14,34 @@ namespace ecoplastol_web2.Models
         public List<meldunki_wynik> ListaWygladGrzejnika { get; set; }
         public List<meldunki_wynik_prz_maszyny> ListaPrzegladMaszyny { get; set; }
         public List<MeldunekView> ListaMeldunkow { get; set; }
+        public meldunki meldunek { get; set; }
+        public int ilosc { get; set; }
+        public int ilosc_techn { get; set; }
+        public DateTime godz_spr_wtr { get; set; }
+        public int wynik_spr_wtr { get; set; }
+        public int wyglad_zew { get; set; }
+        public int wyglad_grzejnika { get; set; }
+        public int przeglad_codz_masz { get; set; }
+        public string uwagi { get; set; }
 
         public MeldunekViewModel(WyborZleceniaModel _wzm)
         {
             this.Wzm = new WyborZleceniaModel(_wzm.IdOperator, _wzm.IdBrygadzista, _wzm.IdMaszyna, _wzm.IdZmiana, _wzm.IdZlecenie, _wzm.DataMeldunku);
-            this.ListaWynikSprawdzenia = PobierzWyniki();
-            this.ListaWygladZewnetrzny = PobierzWyniki();
-            this.ListaWygladGrzejnika = PobierzWyniki();
-            this.ListaPrzegladMaszyny = PobierzPrzeglady();
+            this.ListaWynikSprawdzenia = PobierzWyniki(1);
+            this.ListaWygladZewnetrzny = PobierzWyniki(1);
+            this.ListaWygladGrzejnika = PobierzWyniki(1);
+            this.ListaPrzegladMaszyny = PobierzPrzeglady(1);
             this.ListaMeldunkow = PobierzMeldunki2(_wzm.DataMeldunku, _wzm.DataMeldunku, _wzm.IdMaszyna,_wzm.IdZlecenie, _wzm.IdZmiana, _wzm.IdOperator);
-        }
+            this.meldunek = new meldunki();
+            this.ilosc = 0;
+            this.ilosc_techn = 0;
+            this.godz_spr_wtr = DateTime.Now;
+            this.wynik_spr_wtr = 1;
+            this.wyglad_zew = 1;
+            this.wyglad_grzejnika = 1;
+            this.przeglad_codz_masz = 1;
+            this.uwagi = String.Empty; 
+    }
 
         public static List<MeldunekView> PobierzMeldunki2(DateTime dataOd, DateTime dataDo, int idMaszyny, int idZlecenia, int idZmiany, int idOperatora)
         {
@@ -137,22 +155,24 @@ namespace ecoplastol_web2.Models
                 return list;
             }
         }
-        public List<meldunki_wynik> PobierzWyniki()
+        public List<meldunki_wynik> PobierzWyniki(int odId)
         {
             using (var db = new ecoplastolEntities())
             {
                 var list = (from m in db.meldunki_wynik
+                            where m.id >= odId
                             orderby m.id ascending
                             select m).ToList();
                 return list;
             }
         }
 
-        public List<meldunki_wynik_prz_maszyny> PobierzPrzeglady()
+        public List<meldunki_wynik_prz_maszyny> PobierzPrzeglady(int odId)
         {
             using (var db = new ecoplastolEntities())
             {
                 var list = (from m in db.meldunki_wynik_prz_maszyny
+                            where m.id >= odId
                             orderby m.id ascending
                             select m).ToList();
                 return list;

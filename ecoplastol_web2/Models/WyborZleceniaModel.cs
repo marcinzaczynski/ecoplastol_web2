@@ -16,6 +16,7 @@ namespace ecoplastol_web2.Models
 
 
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataMeldunku { get; set; }
 
         public List<BrygadzisciViewModel> ListaBrygadzistow { get; set; }

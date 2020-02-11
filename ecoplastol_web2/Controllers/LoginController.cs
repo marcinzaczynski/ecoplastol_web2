@@ -1,8 +1,5 @@
 ﻿using ecoplastol_web2.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ecoplastol_web2.Controllers
@@ -38,7 +35,7 @@ namespace ecoplastol_web2.Controllers
                 {
                     return View(loginModel);
                 }
-                
+
 
             }
 
