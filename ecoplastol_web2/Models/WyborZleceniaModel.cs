@@ -9,29 +9,35 @@ namespace ecoplastol_web2.Models
 
     public class WyborZleceniaModel
     {
-        
+
         public List<OperatorzyViewModel> ListaOperatorow { get; set; }
         public OperatorzyViewModel Operator { get; set; }
+        public int IdOperator { get; set; }
+
 
         [DataType(DataType.Date)]
-        public DateTime DataProdukcji { get; set; }
+        public DateTime DataMeldunku { get; set; }
 
         public List<BrygadzisciViewModel> ListaBrygadzistow { get; set; }
         public BrygadzisciViewModel Brygadzista { get; set; }
+        public int IdBrygadzista { get; set; }
 
         public List<maszyny> ListaMaszyn { get; set; }
         public maszyny Maszyna { get; set; }
+        public int IdMaszyna { get; set; }
 
         public List<zmiany> ListaZmian { get; set; }
         public zmiany Zmiana { get; set; }
+        public int IdZmiana { get; set; }
 
         public List<ZleceniaViewModel> ListaZlecen { get; set; }
-        public zlecenia_produkcyjne Zlecenie { get; set; }
+        public ZleceniaViewModel Zlecenie { get; set; }
+        public int IdZlecenie { get; set; }
 
         public WyborZleceniaModel() {
             this.ListaOperatorow = PobierzOperatorow();
             this.Operator = new OperatorzyViewModel();
-            this.DataProdukcji = DateTime.Now;
+            this.DataMeldunku = DateTime.Now;
             this.ListaBrygadzistow = PobierzBrygadzistow();
             this.Brygadzista = new BrygadzisciViewModel();
             this.ListaMaszyn = PobierzMaszyny();
@@ -39,6 +45,27 @@ namespace ecoplastol_web2.Models
             this.ListaZmian = PobierzZmiany();
             this.Zmiana = new zmiany();
         }
+
+        public WyborZleceniaModel(int idOperator, int idBrygadzista, int idMaszyna, int idZmiana, int idZlecenie, DateTime dataMeldunku)
+        {
+            this.DataMeldunku = dataMeldunku;
+            this.IdOperator = idOperator;
+            this.IdBrygadzista = idBrygadzista;
+            this.IdMaszyna = idMaszyna;
+            this.IdZmiana = idZmiana;
+            this.IdZlecenie = idZlecenie;
+            this.ListaOperatorow = PobierzOperatorow();
+            this.Operator = this.ListaOperatorow.Where(o => o.id == idOperator).FirstOrDefault();
+            this.ListaBrygadzistow = PobierzBrygadzistow();
+            this.Brygadzista = this.ListaBrygadzistow.Where(b => b.id == idBrygadzista).FirstOrDefault();
+            this.ListaMaszyn = PobierzMaszyny();
+            this.Maszyna = this.ListaMaszyn.Where(m => m.id == idMaszyna).FirstOrDefault();
+            this.ListaZmian = PobierzZmiany();
+            this.Zmiana = this.ListaZmian.Where(z => z.id == idZmiana).FirstOrDefault();
+            this.ListaZlecen = PobierzZlecenia(idMaszyna, dataMeldunku);
+            this.Zlecenie = ListaZlecen.Where(z => z.id == idZlecenie).FirstOrDefault();
+        }
+
 
         public List<ZleceniaViewModel> PobierzZlecenia(int IdMaszyna, DateTime DataProdukcji)
         {

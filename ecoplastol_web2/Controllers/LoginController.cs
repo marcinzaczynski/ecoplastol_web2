@@ -27,7 +27,7 @@ namespace ecoplastol_web2.Controllers
             else
             {
                 OperatorzyViewModel op;
-                op = loginModel.ListaOperatorow.Where(l => l.id == loginModel.Operator).FirstOrDefault();
+                op = loginModel.ListaOperatorow.Where(l => l.id == loginModel.IdOperator).FirstOrDefault();
                 if (op.haslo == loginModel.Haslo)
                 {
                     return RedirectToAction("WyborZlecenia", "WyborZlecenia", op);

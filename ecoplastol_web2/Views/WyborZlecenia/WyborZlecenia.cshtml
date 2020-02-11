@@ -8,54 +8,42 @@
 {
     @Html.AntiForgeryToken()
 
-    <table class="table">
-        <tr>
-            <th>
-                <p>Operator</p>
-            </th>
-            <th>
-                <p>Brygadzista</p>
-            </th>
-            <th>
-                <p>Zmiana</p>
-            </th>
-            <th>
-                <p>Maszyna</p>
-            </th>
-            <th>
-                <p>Data produkcji</p>
-            </th>
-        </tr>
-        <tr>
-            <td>
-                @Model.Operator.NazwaOperatora
-                @Html.DropDownListFor(model => model.Operator.id,
-                            new SelectList(Model.ListaOperatorow, "id", "NazwaOperatora"),
-                            new { @class = "hidden" })
-            </td>
-            <td>
-                @Html.DropDownListFor(model => model.Brygadzista.id,
+    <div class="row, form-group">
+        <div class="col-md-2">Operator</div>
+        <div class="col-md-2">Brygadzista</div>
+        <div class="col-md-2">Zmiana</div>
+        <div class="col-md-2">Maszyna</div>
+        <div class="col-md-2">Data produkcji</div>
+    </div>
+    <div class="row, form-group">
+        <div class="col-md-2">
+            @Model.Operator.NazwaOperatora
+            @Html.DropDownListFor(model => model.IdOperator,
+                        new SelectList(Model.ListaOperatorow, "id", "NazwaOperatora"),
+                        new { @class = "hidden" })
+        </div>
+        <div class="col-md-2">
+            @Html.DropDownListFor(model => model.IdBrygadzista,
                             new SelectList(Model.ListaBrygadzistow, "id", "NazwaBrygadzisty"),
                             /*new { htmlAttributes = new { @class = "form-control" } })*/
                             new { @class = "form-control" })
-            </td>
-            <td>
-                @Html.DropDownListFor(model => model.Zmiana.id,
+        </div>
+        <div class="col-md-2">
+            @Html.DropDownListFor(model => model.IdZmiana,
                                        new SelectList(Model.ListaZmian, "id", "nazwa"),
                                        new { @class = "form-control" })
-            <td>
-                @Html.DropDownListFor(model => model.Maszyna.id,
+        </div>
+        <div class="col-md-2">
+            @Html.DropDownListFor(model => model.IdMaszyna,
                                        new SelectList(Model.ListaMaszyn, "id", "nazwa"),
                                       new { @class = "form-control" })
-            </td>
-            <td>
-                @Html.TextBoxFor(model => model.DataProdukcji, String.Format("{0:d}", Model.DataProdukcji.ToShortDateString()),
-         new { @class = "datefield form-control", type = "date" })
-                @*@Html.EditorFor(model => model.DataProdukcji, new { @class = "date-picker", type = "date" })*@
-
-            </td>
-        </tr>
-    </table>
+        </div>
+        <div class="col-md-2">
+            @Html.TextBoxFor(model => model.DataMeldunku, String.Format("{0:d}", Model.DataMeldunku.ToShortDateString()),
+        new { @class = "datefield form-control", type = "date" })
+        </div>
+    </div>
+    
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" name="submitButton" value="Wyszukaj zlecenia" class="btn btn-default" />
@@ -63,7 +51,7 @@
     </div>
 
 
-    if (Model.ListaZlecen != null)
+    if ((Model.ListaZlecen != null) && (Model.ListaZlecen.Count > 0))
     {
         <table class="table">
             <tr>
@@ -73,7 +61,7 @@
             </tr>
             <tr>
                 <td>
-                    @Html.DropDownListFor(model => model.Zlecenie.id,
+                    @Html.DropDownListFor(model => model.IdZlecenie,
                                            new SelectList(Model.ListaZlecen, "id", "NazwaZlecenia"),
                                            new { @class = "form-control" })
                 </td>

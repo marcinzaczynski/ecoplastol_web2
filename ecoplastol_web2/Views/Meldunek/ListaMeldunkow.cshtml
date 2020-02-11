@@ -1,0 +1,65 @@
+﻿@model ecoplastol_web2.Models.MeldunekViewModel
+
+
+    <p>
+        @Html.ActionLink("Create New", "DodajMeldunek", new { mvm = @Model})
+    </p>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Dane operatora</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-3"><h3>@Model.Wzm.Operator.NazwaOperatora</h3></div>
+                <div class="col-md-3"><h3>@Model.Wzm.Maszyna.nazwa</h3></div>
+                <div class="col-md-3"><h3>@Model.Wzm.Zlecenie.NazwaZlecenia</h3></div>
+                <div class="col-md-3"><h3>@Model.Wzm.DataMeldunku</h3></div>
+            </div>
+        </div>
+    </div>
+
+    @{ 
+        if ((Model.ListaMeldunkow != null) && (Model.ListaMeldunkow.Count > 0))
+        {
+
+            <p>Meldunki</p>
+            <table class="table">
+                <tr>
+                    <th>
+                        Ilość (ocena pozytywna)
+                    </th>
+                    <th>
+                        Ilość (ocena negatywna)
+                    </th>
+                    <th>
+                        Ilość (wady technologiczne)
+                    </th>
+                    <th>
+                        Przegląd codzienny maszyny
+                    </th>
+                    <th>
+                        Nadzorowane parametry wtryskarki
+                    </th>
+                    <th>
+                        Wygląd zewnętrzny
+                    </th>
+                    <th>
+                        Wygląd grzejnika
+                    </th>
+                </tr>
+                @foreach (var item in Model.ListaMeldunkow)
+                {
+                    <tr>
+                        <td>@item.ilosc</td>
+                        <td>@item.ilosc_wad_nn</td>
+                        <td>@item.ilosc_techn</td>
+                        <td>@item.opis_przeglad_codzienny_maszyny</td>
+                        <td>@item.opis_wynik_spr_wtr</td>
+                        <td>@item.opis_wyglad_zew</td>
+                        <td>@item.opis_wyglad_grzejnika</td>
+                    </tr>
+                }
+            </table>
+        }
+    }
+

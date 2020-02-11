@@ -10,7 +10,7 @@ namespace ecoplastol_web2.Models
     {
         [Display(Name = "Login")]
         public List<OperatorzyViewModel> ListaOperatorow { get; set; }
-        public int Operator { get; set; }
+        public int IdOperator { get; set; }
 
         [Required]
         [Display(Name = "Hasło")]
@@ -21,6 +21,7 @@ namespace ecoplastol_web2.Models
         {
             var loginModeldb = new LoginModel_db();
             this.ListaOperatorow = loginModeldb.OperatorzyMaszyn;
+            this.IdOperator = 0;
             
         }
     }
