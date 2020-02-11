@@ -13,12 +13,13 @@ namespace ecoplastol_web2.Controllers
         // GET: Meldunek
         public ActionResult ListaMeldunkow(WyborZleceniaModel _wzm)
         {
+
+
             mvm = new MeldunekViewModel(_wzm);
-            mvm.test = 77;
             return View(mvm);
         }
 
-        public ActionResult DodajMeldunek(MeldunekViewModel mvm)
+        public ActionResult DodajMeldunek(int id_zlecenie, int id_operator, int id_brygadzista, int zmiana, DateTime data_meldunku)
         {
             
             return View(mvm);

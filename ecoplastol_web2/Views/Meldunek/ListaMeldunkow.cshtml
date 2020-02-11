@@ -2,7 +2,11 @@
 
 
     <p>
-        @Html.ActionLink("Create New", "DodajMeldunek", new { mvm = @Model})
+        @Html.ActionLink("Create New", "DodajMeldunek", new { id_zlecenie = @Model.Wzm.IdZlecenie, 
+                                                              id_operator = @Model.Wzm.IdOperator, 
+                                                              id_brygadzista = @Model.Wzm.IdBrygadzista, 
+                                                              zmiana =  @Model.Wzm.IdMaszyna, 
+                                                              data_meldunku = @Model.Wzm.DataMeldunku })
     </p>
     <div class="panel panel-default">
         <div class="panel-heading">

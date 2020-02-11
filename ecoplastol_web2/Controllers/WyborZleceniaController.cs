@@ -14,29 +14,20 @@ namespace ecoplastol_web2.Controllers
         public ActionResult WyborZlecenia(OperatorzyViewModel op)
         {
             wzm = new WyborZleceniaModel(op.id, op.brygada, 1, 1, 0, DateTime.Now);
-            wzm.IdOperator = op.id;
-            wzm.Operator = op;
-            wzm.Brygadzista = wzm.ListaBrygadzistow.Where(b => b.id == op.brygada).FirstOrDefault();
             return View(wzm);
         }
 
         [HttpPost]
         public ActionResult WyborZlecenia(WyborZleceniaModel _wzm, string submitButton)
         {
-            wzm = new WyborZleceniaModel();
-            wzm = _wzm;
-            wzm.Operator = _wzm.ListaOperatorow.Where(o => o.id == _wzm.IdOperator).FirstOrDefault();
-            wzm.Brygadzista = _wzm.ListaBrygadzistow.Where(b => b.id == _wzm.IdBrygadzista).FirstOrDefault();
-            wzm.Zmiana = _wzm.ListaZmian.Where(z => z.id == _wzm.IdZmiana).FirstOrDefault();
-            wzm.Maszyna = _wzm.ListaMaszyn.Where(m => m.id == _wzm.IdMaszyna).FirstOrDefault();
-            wzm.ListaZlecen = wzm.PobierzZlecenia(wzm.IdMaszyna, wzm.DataMeldunku);
+            wzm = new WyborZleceniaModel(_wzm.IdOperator, _wzm.IdBrygadzista, _wzm.IdMaszyna, _wzm.IdZmiana, _wzm.IdZlecenie, _wzm.DataMeldunku);
             switch (submitButton)
             {
                 case "Wyszukaj zlecenia":
                     return View(wzm);
                     break;
                 case "Pokaż meldunki":
-                    wzm.Zlecenie = _wzm.ListaZlecen.Where(m => m.id == _wzm.IdZlecenie).FirstOrDefault();
+                    //wzm.Zlecenie = _wzm.ListaZlecen.Where(m => m.id == _wzm.IdZlecenie).FirstOrDefault();
                     return RedirectToAction("ListaMeldunkow", "Meldunek", wzm);
                     break;
                 case "Utwórz meldunek":
