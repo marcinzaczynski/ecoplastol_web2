@@ -4,114 +4,135 @@
 {
     @Html.AntiForgeryToken()
     
-<div class="form-horizontal">
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Dane operatora</h3>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Dane operatora</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3"><h3>@Model.Wzm.Operator.NazwaOperatora</h3></div>
+                    <div class="col-md-3"><h3>@Model.Wzm.Maszyna.nazwa</h3></div>
+                    <div class="col-md-3"><h3>@Model.Wzm.Zlecenie.NazwaZlecenia</h3></div>
+                    <div class="col-md-3"><h3>@Model.Wzm.DataMeldunku</h3></div>
+                </div>
+            </div>
         </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-3"><h3>@Model.Wzm.Operator.NazwaOperatora</h3></div>
-                <div class="col-md-3"><h3>@Model.Wzm.Maszyna.nazwa</h3></div>
-                <div class="col-md-3"><h3>@Model.Wzm.Zlecenie.NazwaZlecenia</h3></div>
-                <div class="col-md-3"><h3>@Model.Wzm.DataMeldunku</h3></div>
+
+        <div class="row form-group">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Nowy meldunek</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row form-group">
+                            <div class="col-md-6"><h5>Ilość (ocena pozytywna)</h5></div>
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.ilosc)
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6"><h5>Ilość (wady technlogiczne)</h5></div>
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.ilosc_techn)
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6"><h5>Przegląd codzienny maszyny</h5></div>
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.przeglad_codz_masz,
+                                                    new SelectList(Model.ListaPrzegladMaszyny, "id", "wynik"),
+                                                    /*new { htmlAttributes = new { @class = "form-control" } })*/
+                                                    new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6"><h5>Nadzorowane parametry wtryskarki</h5></div>
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.wynik_spr_wtr,
+                                                    new SelectList(Model.ListaWynikSprawdzenia, "id", "wynik"),
+                                                    /*new { htmlAttributes = new { @class = "form-control" } })*/
+                                                    new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6"><h5>Wygląd zewnętrzny</h5></div>
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.wyglad_zew,
+                                                    new SelectList(Model.ListaWygladZewnetrzny, "id", "wynik"),
+                                                    /*new { htmlAttributes = new { @class = "form-control" } })*/
+                                                    new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6"><h5>Wygląd grzejnika</h5></div>
+                            <div class="col-md-6">
+                                @Html.DropDownListFor(model => model.wyglad_grzejnika,
+                                                     new SelectList(Model.ListaWygladGrzejnika, "id", "wynik"),
+                                                     /*new { htmlAttributes = new { @class = "form-control" } })*/
+                                                     new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Ilość (ocena negatywna)</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row form-group">
+                            <div class="col-md-6">Brak wpływki</div>
+                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn1)</div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">Wciąg</div>
+                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn2)</div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">Wada grzejnika</div>
+                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn3)</div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">Brak przejścia</div>
+                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn4)</div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">Wtrącenie</div>
+                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn5)</div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">Uszkodzony kominek</div>
+                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn6)</div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">Wadliwa forma</div>
+                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn7)</div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">Wada wizualna</div>
+                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn8)</div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">Brak bolca</div>
+                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn9)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Nowy meldunek</h3>
-        </div>
-        <div class="panel-body ">
-            <div class="row form-group">
-                <div class="col-md-3"><h5>Ilość (ocena pozytywna)</h5></div>
-                <div class="col-md-3">
-                    @Html.TextBoxFor(model => model.ilosc)
-                </div>
-                <div class="col-md-offset-1 col-md-3">Brak wpływki</div>
-                <div class="col-md-2">ilość</div>
-            </div>
-            <div class="row form-group">
-                <div class="col-md-3"><h5>Ilość (wady technlogiczne)</h5></div>
-                <div class="col-md-3">
-                    @Html.TextBoxFor(model => model.ilosc_techn)
-                </div>
-                <div class="col-md-offset-1 col-md-3">Wciąg</div>
-                <div class="col-md-2">ilość</div>
-            </div>
-            <div class="row form-group">
-                <div class="col-md-3"><h5>Przegląd codzienny maszyny</h5></div>
-                <div class="col-md-3">
-                    @Html.DropDownListFor(model => model.przeglad_codz_masz,
-                                        new SelectList(Model.ListaPrzegladMaszyny, "id", "wynik"),
-                                        /*new { htmlAttributes = new { @class = "form-control" } })*/
-                                        new { @class = "form-control" })
-                </div>
-                <div class="col-md-offset-1 col-md-3">Wada grzejnika</div>
-                <div class="col-md-2">ilość</div>
-            </div>
-            <div class="row form-group">
-                <div class="col-md-3"><h5>Nadzorowane parametry wtryskarki</h5></div>
-                <div class="col-md-3">
-                    @Html.DropDownListFor(model => model.wynik_spr_wtr,
-                                        new SelectList(Model.ListaWynikSprawdzenia, "id", "wynik"),
-                                        /*new { htmlAttributes = new { @class = "form-control" } })*/
-                                        new { @class = "form-control" })
-                </div>
-                <div class="col-md-offset-1 col-md-3">Brak przejścia</div>
-                <div class="col-md-2">ilość</div>
-            </div>
-            <div class="row form-group">
-                <div class="col-md-3"><h5>Wygląd zewnętrzny</h5></div>
-                <div class="col-md-3">
-                    @Html.DropDownListFor(model => model.wyglad_zew,
-                                        new SelectList(Model.ListaWygladZewnetrzny, "id", "wynik"),
-                                        /*new { htmlAttributes = new { @class = "form-control" } })*/
-                                        new { @class = "form-control" })
-                </div>
-                <div class="col-md-offset-1 col-md-3">Wtrącenie</div>
-                <div class="col-md-2">ilość</div>
-            </div>
-            <div class="row form-group">
-                <div class="col-md-3"><h5>Wygląd grzejnika</h5></div>
-                <div class="col-md-3">
-                    @Html.DropDownListFor(model => model.wyglad_grzejnika,
-                                         new SelectList(Model.ListaWygladGrzejnika, "id", "wynik"),
-                                         /*new { htmlAttributes = new { @class = "form-control" } })*/
-                                         new { @class = "form-control" })
-                </div>
-                <div class="col-md-offset-1 col-md-3">Uszkodzony kominek</div>
-                <div class="col-md-2">ilość</div>
-            </div>
-            <div class="row form-group">
-                <div class="col-md-3"><h5></h5></div>
-                <div class="col-md-3"></div>
-                <div class="col-md-offset-1 col-md-3">Wadliwa forma</div>
-                <div class="col-md-2">ilość</div>
-            </div>
-            <div class="row form-group">
-                <div class="col-md-3"><h5></h5></div>
-                <div class="col-md-3"></div>
-                <div class="col-md-offset-1 col-md-3">Wada wizualna</div>
-                <div class="col-md-2">ilość</div>
-            </div>
-            <div class="row form-group">
-                <div class="col-md-3"><h5></h5></div>
-                <div class="col-md-3"></div>
-                <div class="col-md-offset-1 col-md-3">Brak bolca</div>
-                <div class="col-md-2">ilość</div>
-            </div>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-    </div>
-</div>
 }
 
 <div>

@@ -3,6 +3,26 @@
 @{
     ViewBag.Title = "Index";
 }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui") <!-- marcin - dodane przy pracy z datepicker -->
+    @Styles.Render("~/Content/jquerycss")
+
+    <script type="text/javascript">
+        $(function () {
+            // This will make every element with the class "date-picker" into a DatePicker element
+            $('.date-picker').datepicker(
+                {
+                    dateFormat: 'dd/mm/yy',
+                    changeMonth: true,
+                    changeYear: true
+                });
+        })
+
+
+    </script>
+ 
+}
 
 @using (Html.BeginForm())
 {
@@ -44,8 +64,10 @@
                                                   new { @class = "form-control" })
                     </div>
                     <div class="col-md-2">
-                        @Html.TextBoxFor(model => model.DataMeldunku, String.Format("{0:d}", Model.DataMeldunku.ToShortDateString()),
-                    new { @class = "datefield form-control", type = "date" })
+                        @*@Html.TextBoxFor(model => model.DataMeldunku, String.Format("{0:d}", Model.DataMeldunku.ToShortDateString()),
+                            new { @class = "datefield form-control", type = "date" })*@
+                        @Html.EditorFor(model => model.DataMeldunku, new { @class = "date-picker" })
+                        @Html.TextBoxFor(model => model.DataMeldunku, new { @class = "date-picker" })
                     </div>
                 </div>
 
@@ -84,11 +106,9 @@
             </div>
         </div>
 
-        
+
     </div>
 
 }
 <hr />
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+

@@ -23,6 +23,15 @@ namespace ecoplastol_web2.Models
         public int wyglad_grzejnika { get; set; }
         public int przeglad_codz_masz { get; set; }
         public string uwagi { get; set; }
+        public int wnn1 { get; set; }
+        public int wnn2 { get; set; }
+        public int wnn3 { get; set; }
+        public int wnn4 { get; set; }
+        public int wnn5 { get; set; }
+        public int wnn6 { get; set; }
+        public int wnn7 { get; set; }
+        public int wnn8 { get; set; }
+        public int wnn9 { get; set; }
 
         public MeldunekViewModel(WyborZleceniaModel _wzm)
         {
@@ -40,8 +49,17 @@ namespace ecoplastol_web2.Models
             this.wyglad_zew = 1;
             this.wyglad_grzejnika = 1;
             this.przeglad_codz_masz = 1;
-            this.uwagi = String.Empty; 
-    }
+            this.uwagi = String.Empty;
+            this.wnn1 = 0;
+            this.wnn2 = 0;
+            this.wnn3 = 0;
+            this.wnn4 = 0;
+            this.wnn5 = 0;
+            this.wnn6 = 0;
+            this.wnn7 = 0;
+            this.wnn8 = 0;
+            this.wnn9 = 0;
+        }
 
         public static List<MeldunekView> PobierzMeldunki2(DateTime dataOd, DateTime dataDo, int idMaszyny, int idZlecenia, int idZmiany, int idOperatora)
         {
