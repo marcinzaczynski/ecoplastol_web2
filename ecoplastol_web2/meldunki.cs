@@ -18,7 +18,7 @@ namespace ecoplastol_web2
         public int id_zlecenie { get; set; }
         public int id_operator { get; set; }
         public int id_brygadzista { get; set; }
-        public int zmiana { get; set; }
+        public int id_zmiana { get; set; }
         public System.DateTime data_meldunku { get; set; }
         public int ilosc { get; set; }
         public int ilosc_techn { get; set; }
@@ -28,6 +28,7 @@ namespace ecoplastol_web2
         public int wyglad_grzejnika { get; set; }
         public int przeglad_codz_masz { get; set; }
         public string uwagi { get; set; }
+        public bool zatwierdzony { get; set; }
         public string opw { get; set; }
         public System.DateTime czasw { get; set; }
         public string opm { get; set; }

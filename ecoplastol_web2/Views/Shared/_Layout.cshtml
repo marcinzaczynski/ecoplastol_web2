@@ -6,14 +6,9 @@
     <title>Ecoplastol - meldunki</title>
 
 
-
-
-
     @Styles.Render("~/Content/css")
-    
+    @Styles.Render("~/Content/jquerycss")
     @Scripts.Render("~/bundles/modernizr")
-
-
 
 </head>
 <body>
@@ -47,10 +42,10 @@
 
 
     @Scripts.Render("~/bundles/jquery")
-    
+    @Scripts.Render("~/bundles/jqueryui") <!-- marcin - dodane przy pracy z datepicker -->
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    
+
 
 </body>
 </html>

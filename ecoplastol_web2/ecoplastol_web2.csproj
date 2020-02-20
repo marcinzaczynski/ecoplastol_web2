@@ -172,6 +172,7 @@
     <Compile Include="Controllers\MeldunekController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\WyborZleceniaController.cs" />
+    <Compile Include="db\Meldunek_db.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -294,8 +295,10 @@
       <DependentUpon>PGmodel.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\CustomProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\eco_datepicker.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -324,6 +327,7 @@
     <Content Include="Views\Test\TestAction.cshtml" />
     <Content Include="Views\Meldunek\ListaMeldunkow.cshtml" />
     <Content Include="Views\Meldunek\DodajMeldunek.cshtml" />
+    <Content Include="Views\Meldunek\PoprawMeldunek.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

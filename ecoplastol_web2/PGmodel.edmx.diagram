@@ -10,10 +10,10 @@
         <EntityTypeShape EntityType="ecoplastolModel.operatorzy_maszyn" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="false" />
         <EntityTypeShape EntityType="ecoplastolModel.zmiany" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="false" />
         <EntityTypeShape EntityType="ecoplastolModel.zlecenia_produkcyjne" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="false" />
-        <EntityTypeShape EntityType="ecoplastolModel.meldunki" Width="1.5" PointX="2.375" PointY="0.75" IsExpanded="false" />
         <EntityTypeShape EntityType="ecoplastolModel.meldunki_wady_nn" Width="2.125" PointX="2.375" PointY="1.25" IsExpanded="false" />
         <EntityTypeShape EntityType="ecoplastolModel.meldunki_wynik" Width="2.125" PointX="2.375" PointY="1.75" IsExpanded="false" />
         <EntityTypeShape EntityType="ecoplastolModel.meldunki_wynik_prz_maszyny" Width="2.125" PointX="2.375" PointY="2.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="ecoplastolModel.meldunki" Width="2.125" PointX="2.375" PointY="0.75" IsExpanded="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

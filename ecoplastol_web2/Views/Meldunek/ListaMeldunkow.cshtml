@@ -1,27 +1,39 @@
 ﻿@model ecoplastol_web2.Models.MeldunekViewModel
 
+    <style>
+        .mojbutton:hover {
+            color: greenyellow;
+            
+        }
 
-<button class="btn">
+        .mojbutton {
+            color: greenyellow;
+            display: block;
+        }
+    </style>
+
+<button class="mojbutton">
     @Html.ActionLink("Create New", "DodajMeldunek", new
     {
         id_operator = @Model.Wzm.IdOperator,
         id_brygadzista = @Model.Wzm.IdBrygadzista,
         id_maszyna = Model.Wzm.IdMaszyna,
-        zmiana = @Model.Wzm.IdMaszyna,
+        zmiana = @Model.Wzm.IdZmiana,
         id_zlecenie = @Model.Wzm.IdZlecenie,
         data_meldunku = @Model.Wzm.DataMeldunku
     })
 </button>
+
 @Html.ActionLink("Create New", "DodajMeldunek", new
 {
     id_operator = @Model.Wzm.IdOperator,
     id_brygadzista = @Model.Wzm.IdBrygadzista,
     id_maszyna = Model.Wzm.IdMaszyna,
-    zmiana = @Model.Wzm.IdMaszyna,
+    zmiana = @Model.Wzm.IdZmiana,
     id_zlecenie = @Model.Wzm.IdZlecenie,
     data_meldunku = @Model.Wzm.DataMeldunku
 
-},  new { htmlAttributes = new { @class = "btn btn-default" } })
+},  new { htmlAttributes = new { @class = "btn btn-primary mojbutton" } })
 
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -32,7 +44,7 @@
             <div class="col-md-3"><h3>@Model.Wzm.Operator.NazwaOperatora</h3></div>
             <div class="col-md-3"><h3>@Model.Wzm.Maszyna.nazwa</h3></div>
             <div class="col-md-3"><h3>@Model.Wzm.Zlecenie.NazwaZlecenia</h3></div>
-            <div class="col-md-3"><h3>@Model.Wzm.DataMeldunku</h3></div>
+            <div class="col-md-3"><h3>@Model.Wzm.DataMeldunku.ToString("dd.MM.yyyy")</h3></div>
         </div>
     </div>
 </div>
@@ -49,6 +61,7 @@
             <div class="col-md-2"><h5>Nadzorowane parametry wtryskarki</h5></div>
             <div class="col-md-2"><h5>Wygląd zewnętrzny</h5></div>
             <div class="col-md-2"><h5>Wygląd grzejnika</h5></div>
+            <div class="col-md-1"><h5></h5></div>
         </div>
         @if ((Model.ListaMeldunkow != null) && (Model.ListaMeldunkow.Count > 0))
         {
@@ -62,6 +75,21 @@
                     <div class="col-md-2"><h4>@item.opis_wynik_spr_wtr</h4></div>
                     <div class="col-md-2"><h4>@item.opis_wyglad_zew</h4></div>
                     <div class="col-md-2"><h4>@item.opis_wyglad_grzejnika</h4></div>
+                    @if (!item.zatwierdzony)
+                    {
+                        <div class="col-md-1">
+                            @Html.ActionLink("Popraw", "PoprawMeldunek", new
+                                {
+                                id_operator = @Model.Wzm.IdOperator,
+                                id_brygadzista = @Model.Wzm.IdBrygadzista,
+                                id_maszyna = Model.Wzm.IdMaszyna,
+                                zmiana = @Model.Wzm.IdZmiana,
+                                id_zlecenie = @Model.Wzm.IdZlecenie,
+                                data_meldunku = @Model.Wzm.DataMeldunku,
+                                id_meldunku = @item.id
+                                })
+                        </div>
+                    }
                 </div>
             }
         }

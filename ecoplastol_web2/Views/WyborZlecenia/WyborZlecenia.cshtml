@@ -5,24 +5,43 @@
 }
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/jqueryui") <!-- marcin - dodane przy pracy z datepicker -->
-    @Styles.Render("~/Content/jquerycss")
+
+
+    @*https://stackoverflow.com/questions/12053022/mvc-datetime-validation-uk-date-format/*@
 
     <script type="text/javascript">
         $(function () {
             // This will make every element with the class "date-picker" into a DatePicker element
             $('.date-picker').datepicker(
                 {
-                    dateFormat: 'dd/mm/yy',
+                    dateFormat: 'dd.mm.yy',
+                    locale: 'pl',
                     changeMonth: true,
                     changeYear: true
                 });
         })
+        jQuery(function ($) {
+            $.validator.addMethod('date',
+                function (value, element) {
+                    if (this.optional(element)) {
+                        return true;
+                    }
 
+                    var ok = true;
+                    try {
+                        $.datepicker.parseDate('dd.mm.yy', value);
+                    }
+                    catch (err) {
+                        ok = false;
+                    }
+                    return ok;
+                });
+        });
 
     </script>
- 
+
 }
+@Model.DataMeldunku
 
 @using (Html.BeginForm())
 {
@@ -66,8 +85,9 @@
                     <div class="col-md-2">
                         @*@Html.TextBoxFor(model => model.DataMeldunku, String.Format("{0:d}", Model.DataMeldunku.ToShortDateString()),
                             new { @class = "datefield form-control", type = "date" })*@
-                        @Html.EditorFor(model => model.DataMeldunku, new { @class = "date-picker" })
-                        @Html.TextBoxFor(model => model.DataMeldunku, new { @class = "date-picker" })
+                        @*@Html.EditorFor(model => model.DataMeldunku, new { @class = "date-picker" })*@
+                        @Html.TextBoxFor(model => model.DataMeldunku,"{0:dd.MM.yyyy}", new { @class = "form-control date-picker" })
+
                     </div>
                 </div>
 
