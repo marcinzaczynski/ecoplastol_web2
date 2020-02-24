@@ -15,7 +15,9 @@ namespace ecoplastol_web2.Models
         public int IdOperator { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
+        //[DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime DataMeldunku { get; set; }
 
         public List<BrygadzisciViewModel> ListaBrygadzistow { get; set; }
