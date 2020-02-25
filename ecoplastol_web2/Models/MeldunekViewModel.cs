@@ -1,6 +1,7 @@
 ﻿using ecoplastol_web2.db;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -18,7 +19,10 @@ namespace ecoplastol_web2.Models
         public List<MeldunekView> ListaMeldunkow { get; set; }
         public List<meldunki_wady_nn> ListaWadNN { get; set; }
         public meldunki meldunek { get; set; }
+
+        [DisplayName("Ilość (ocena pozytywna)")]
         public int ilosc { get; set; }
+        [DisplayName("Ilość (wady technologiczne)")]
         public int ilosc_techn { get; set; }
         public TimeSpan godz_spr_wtr { get; set; }
         public int wynik_spr_wtr { get; set; }

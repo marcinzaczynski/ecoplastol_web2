@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -12,24 +13,27 @@ namespace ecoplastol_web2.Models
 
         public List<OperatorzyViewModel> ListaOperatorow { get; set; }
         public OperatorzyViewModel Operator { get; set; }
+        [DisplayName("Operator")]
         public int IdOperator { get; set; }
 
         [DataType(DataType.Date)]
-        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
-        //[DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+        [DisplayName("Data produkcji")]
         public DateTime DataMeldunku { get; set; }
 
         public List<BrygadzisciViewModel> ListaBrygadzistow { get; set; }
         public BrygadzisciViewModel Brygadzista { get; set; }
+        [DisplayName("Brygadzista")]
         public int IdBrygadzista { get; set; }
 
         public List<maszyny> ListaMaszyn { get; set; }
         public maszyny Maszyna { get; set; }
+        [DisplayName("Maszyna")]
         public int IdMaszyna { get; set; }
 
         public List<zmiany> ListaZmian { get; set; }
         public zmiany Zmiana { get; set; }
+        [DisplayName("Zmiana")]
         public int IdZmiana { get; set; }
 
         public List<ZleceniaViewModel> ListaZlecen { get; set; }

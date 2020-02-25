@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 
@@ -15,6 +16,7 @@ namespace ecoplastol_web2.Models
         public bool aktywny { get; set; }
         public int brygada { get; set; }
         //
+        
         public string NazwaOperatora { get; set; }
     }
 }

@@ -7,6 +7,7 @@
     @Scripts.Render("~/bundles/eco")
 }
 @Model.DataMeldunku
+@Html.DisplayFor(model => model.DataMeldunku)
 
 @using (Html.BeginForm())
 {
@@ -17,39 +18,59 @@
                 <h3 class="panel-title">Dane operatora</h3>
             </div>
             <div class="panel-body">
-                <div class="row, form-group">
-                    <div class="col-md-2">Operator</div>
-                    <div class="col-md-2">Brygadzista</div>
-                    <div class="col-md-2">Zmiana</div>
-                    <div class="col-md-2">Maszyna</div>
-                    <div class="col-md-2">Data produkcji</div>
-                </div>
-                <div class="row, form-group">
-                    <div class="col-md-2">
-                        @Model.Operator.NazwaOperatora
-                        @Html.DropDownListFor(model => model.IdOperator,
-                                    new SelectList(Model.ListaOperatorow, "id", "NazwaOperatora"),
-                                    new { @class = "hidden" })
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <div>
+                            @Html.DisplayNameFor(model => model.IdOperator)
+                        </div>
+                        <div class="form-control">
+                            @Html.DisplayFor(model => model.Operator.NazwaOperatora)
+                            @Html.DropDownListFor(model => model.IdOperator,
+                                        new SelectList(Model.ListaOperatorow, "id", "NazwaOperatora"),
+                                        new { @class = "hidden" })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div>
+                            @Html.DisplayNameFor(model => model.IdBrygadzista)
+                        </div>
+                        <div>
+                            @Html.DropDownListFor(model => model.IdBrygadzista,
+                                       new SelectList(Model.ListaBrygadzistow, "id", "NazwaBrygadzisty"),
+                                       /*new { htmlAttributes = new { @class = "form-control" } })*/
+                                       new { @class = "form-control" })
+                        </div>
+                       
                     </div>
                     <div class="col-md-2">
-                        @Html.DropDownListFor(model => model.IdBrygadzista,
-                                        new SelectList(Model.ListaBrygadzistow, "id", "NazwaBrygadzisty"),
-                                        /*new { htmlAttributes = new { @class = "form-control" } })*/
-                                        new { @class = "form-control" })
-                    </div>
-                    <div class="col-md-2">
-                        @Html.DropDownListFor(model => model.IdZmiana,
-                                                   new SelectList(Model.ListaZmian, "id", "nazwa"),
-                                                   new { @class = "form-control" })
-                    </div>
-                    <div class="col-md-2">
-                        @Html.DropDownListFor(model => model.IdMaszyna,
-                                                   new SelectList(Model.ListaMaszyn, "id", "nazwa"),
+                        <div>
+                            @Html.DisplayNameFor(model => model.IdZmiana)
+                        </div>
+                        <div>
+                            @Html.DropDownListFor(model => model.IdZmiana,
+                                                  new SelectList(Model.ListaZmian, "id", "nazwa"),
                                                   new { @class = "form-control" })
+                        </div>
+                       
                     </div>
                     <div class="col-md-2">
-                        @Html.TextBoxFor(model => model.DataMeldunku, "{0:yyyy-MM-dd}", new { @class = "datefield form-control", type = "date" })
-
+                        <div>
+                            @Html.DisplayNameFor(model => model.IdMaszyna)
+                        </div>
+                        <div>
+                            @Html.DropDownListFor(model => model.IdMaszyna,
+                                                  new SelectList(Model.ListaMaszyn, "id", "nazwa"),
+                                                 new { @class = "form-control" })
+                        </div>
+                       
+                    </div>
+                    <div class="col-md-2">
+                        <div>
+                            @Html.DisplayNameFor(model => model.DataMeldunku)
+                        </div>
+                        <div>
+                            @Html.TextBoxFor(model => model.DataMeldunku, "{0:yyyy-MM-dd}", new { @class = "datefield form-control", type = "date" })
+                        </div>
                     </div>
                 </div>
 

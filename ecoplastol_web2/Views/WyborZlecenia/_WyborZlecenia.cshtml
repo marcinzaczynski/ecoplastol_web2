@@ -1,0 +1,97 @@
+﻿@model ecoplastol_web2.Models.WyborZleceniaModel
+
+@{
+    ViewBag.Title = "Index";
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/eco")
+}
+@Model.DataMeldunku
+@Html.DisplayFor(model => model.DataMeldunku)
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Dane operatora</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row, form-group">
+                    <div class="col-md-2">Operator</div>
+                    <div class="col-md-2">Brygadzista</div>
+                    <div class="col-md-2">Zmiana</div>
+                    <div class="col-md-2">Maszyna</div>
+                    <div class="col-md-2">Data produkcji</div>
+                </div>
+                <div class="row, form-group">
+                    <div class="col-md-2">
+                        @Model.Operator.NazwaOperatora
+                        @Html.DropDownListFor(model => model.IdOperator,
+                                    new SelectList(Model.ListaOperatorow, "id", "NazwaOperatora"),
+                                    new { @class = "hidden" })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.DropDownListFor(model => model.IdBrygadzista,
+                                        new SelectList(Model.ListaBrygadzistow, "id", "NazwaBrygadzisty"),
+                                        /*new { htmlAttributes = new { @class = "form-control" } })*/
+                                        new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.DropDownListFor(model => model.IdZmiana,
+                                                   new SelectList(Model.ListaZmian, "id", "nazwa"),
+                                                   new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.DropDownListFor(model => model.IdMaszyna,
+                                                   new SelectList(Model.ListaMaszyn, "id", "nazwa"),
+                                                  new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(model => model.DataMeldunku, "{0:yyyy-MM-dd}", new { @class = "datefield form-control", type = "date" })
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <input type="submit" name="submitButton" value="Wyszukaj zlecenia" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Lista zleceń</h3>
+            </div>
+            <div class="panel-body">
+                @if ((Model.ListaZlecen != null) && (Model.ListaZlecen.Count > 0))
+                {
+                    <div class="row, form-group">
+                        <div class="col-md-3">
+                            @Html.DropDownListFor(model => model.IdZlecenie,
+                                    new SelectList(Model.ListaZlecen, "id", "NazwaZlecenia"),
+                                    new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <input type="submit" name="submitButton" value="Pokaż meldunki" class="btn btn-primary" />
+                            <input type="submit" name="submitButton" value="Utwórz meldunek" class="btn btn-primary" />
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+}
+<hr />
+

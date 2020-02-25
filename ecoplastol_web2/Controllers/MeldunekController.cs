@@ -18,9 +18,23 @@ namespace ecoplastol_web2.Controllers
             return View(mvm);
         }
 
-        public ActionResult DodajMeldunek(int id_operator, int id_brygadzista, int id_maszyna, int zmiana, int id_zlecenie, DateTime data_meldunku)
+        // używany do action linka z listy meldunków, do dodawania nowego meldunku zanim zrobiłem na formularzu
+        public ActionResult DodajMeldunek(int id_operator, int id_brygadzista, int id_maszyna, int id_zmiana, int id_zlecenie, DateTime data_meldunku)
         {
-            WyborZleceniaModel wzm = new WyborZleceniaModel(id_operator, id_brygadzista, id_maszyna, zmiana, id_zlecenie, data_meldunku);
+            WyborZleceniaModel wzm = new WyborZleceniaModel(id_operator, id_brygadzista, id_maszyna, id_zmiana, id_zlecenie, data_meldunku);
+            MeldunekViewModel mvm = new MeldunekViewModel(wzm);
+            return View(mvm);
+        }
+       
+        [HttpPost]
+        public ActionResult NowyMeldunek(MeldunekViewModel _mvm)
+        {
+            WyborZleceniaModel wzm = new WyborZleceniaModel(_mvm.Wzm.IdOperator,
+                                                          _mvm.Wzm.IdBrygadzista,
+                                                          _mvm.Wzm.IdMaszyna,
+                                                          _mvm.Wzm.IdZmiana,
+                                                          _mvm.Wzm.IdZlecenie,
+                                                          _mvm.Wzm.DataMeldunku);
             MeldunekViewModel mvm = new MeldunekViewModel(wzm);
             return View(mvm);
         }
@@ -116,6 +130,9 @@ namespace ecoplastol_web2.Controllers
         [HttpPost]
         public ActionResult PoprawMeldunek(MeldunekViewModel _mvm)
         {
+            // update tabeli meldunki 
+
+            // update tabeli meldunki_wady_nn
 
             return HttpNotFound();
         }

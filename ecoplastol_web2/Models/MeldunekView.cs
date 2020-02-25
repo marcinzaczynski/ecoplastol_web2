@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 
@@ -9,6 +10,7 @@ namespace ecoplastol_web2.Models
     {
 
         // ilość wad nn
+        [DisplayName("Ilość (ocena negatywna)")]
         public int ilosc_wad_nn { get; set; }
 
         //dodatkowe pola na potrzeby wyświetlania listy - opisy wartości int z tabeli meldunki

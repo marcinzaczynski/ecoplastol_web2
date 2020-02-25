@@ -54,7 +54,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Dane operatora</h3>
             </div>
@@ -70,7 +70,7 @@
 
         <div class="row form-group">
             <div class="col-md-6">
-                <div class="panel panel-default">
+                <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title">Nowy meldunek</h3>
                     </div>
@@ -78,13 +78,13 @@
                         <div class="row form-group">
                             <div class="col-md-6"><h5>Ilość (ocena pozytywna)</h5></div>
                             <div class="col-md-6">
-                                @Html.TextBoxFor(model => model.ilosc)
+                                @Html.TextBoxFor(model => model.ilosc, new { @class = "form-control" })
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-md-6"><h5>Ilość (wady technlogiczne)</h5></div>
                             <div class="col-md-6">
-                                @Html.TextBoxFor(model => model.ilosc_techn)
+                                @Html.TextBoxFor(model => model.ilosc_techn, new { @class = "form-control" })
                             </div>
                         </div>
                         <div class="row form-group">
@@ -127,46 +127,46 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="panel panel-default">
+                <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title">Ilość (ocena negatywna)</h3>
                     </div>
                     <div class="panel-body">
                         <div class="row form-group">
                             <div class="col-md-6">Brak wpływki</div>
-                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn1)</div>
+                            <div class="col-md-6">@Html.TextBoxFor(model => model.wnn1, new { @class = "form-control" })</div>
                         </div>
                         <div class="row form-group">
                             <div class="col-md-6">Wciąg</div>
-                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn2)</div>
+                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn2, new { @class = "form-control" })</div>
                         </div>
                         <div class="row form-group">
                             <div class="col-md-6">Wada grzejnika</div>
-                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn3)</div>
+                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn3, new { @class = "form-control" })</div>
                         </div>
                         <div class="row form-group">
                             <div class="col-md-6">Brak przejścia</div>
-                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn4)</div>
+                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn4, new { @class = "form-control" })</div>
                         </div>
                         <div class="row form-group">
                             <div class="col-md-6">Wtrącenie</div>
-                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn5)</div>
+                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn5, new { @class = "form-control" })</div>
                         </div>
                         <div class="row form-group">
                             <div class="col-md-6">Uszkodzony kominek</div>
-                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn6)</div>
+                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn6, new { @class = "form-control" })</div>
                         </div>
                         <div class="row form-group">
                             <div class="col-md-6">Wadliwa forma</div>
-                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn7)</div>
+                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn7, new { @class = "form-control" })</div>
                         </div>
                         <div class="row form-group">
                             <div class="col-md-6">Wada wizualna</div>
-                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn8)</div>
+                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn8, new { @class = "form-control" })</div>
                         </div>
                         <div class="row form-group">
                             <div class="col-md-6">Brak bolca</div>
-                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn9)</div>
+                            <div class="col-md-2">@Html.TextBoxFor(model => model.wnn9, new { @class = "form-control" })</div>
                         </div>
                     </div>
                 </div>
