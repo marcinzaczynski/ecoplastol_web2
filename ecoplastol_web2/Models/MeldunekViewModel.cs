@@ -20,6 +20,9 @@ namespace ecoplastol_web2.Models
         public List<meldunki_wady_nn> ListaWadNN { get; set; }
         public meldunki meldunek { get; set; }
 
+        [Required(ErrorMessage = "Podaj wartość z zakresu 0 - 999")]
+        //[RegularExpression("[0-9]")]
+        [Range(0, 999)]
         [DisplayName("Ilość (ocena pozytywna)")]
         public int ilosc { get; set; }
         [DisplayName("Ilość (wady technologiczne)")]

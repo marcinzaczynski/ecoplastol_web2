@@ -1,42 +1,11 @@
 ﻿@model ecoplastol_web2.Models.MeldunekViewModel
 
 <style>
-    .mojbutton:hover {
-        color: greenyellow;
-    }
-
-    .mojbutton {
-        color: greenyellow;
-        display: block;
-    }
-
     .wysokosc {
         height: 46px;
     }
 </style>
 
-<button class="mojbutton">
-    @Html.ActionLink("Create New", "DodajMeldunek", new
-{
-    id_operator = @Model.Wzm.IdOperator,
-    id_brygadzista = @Model.Wzm.IdBrygadzista,
-    id_maszyna = Model.Wzm.IdMaszyna,
-    zmiana = @Model.Wzm.IdZmiana,
-    id_zlecenie = @Model.Wzm.IdZlecenie,
-    data_meldunku = @Model.Wzm.DataMeldunku
-})
-</button>
-
-@Html.ActionLink("Create New", "DodajMeldunek", new
-{
-    id_operator = @Model.Wzm.IdOperator,
-    id_brygadzista = @Model.Wzm.IdBrygadzista,
-    id_maszyna = Model.Wzm.IdMaszyna,
-    zmiana = @Model.Wzm.IdZmiana,
-    id_zlecenie = @Model.Wzm.IdZlecenie,
-    data_meldunku = @Model.Wzm.DataMeldunku
-
-}, new { htmlAttributes = new { @class = "btn btn-primary" } })
 <div>
     @using (Html.BeginForm("NowyMeldunek", "Meldunek"))
     {
@@ -74,85 +43,85 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="pull-left">
-                        <h3 class="panel-title">Meldunek @i</h3>
-                    </div>
-                    <div class="pull-right">
-                        <h3 class="panel-title">
-                            @if (!item.zatwierdzony)
-                            {
-                                @Html.ActionLink("Popraw", "PoprawMeldunek", new
-                                    {
-                                    id_operator = @Model.Wzm.IdOperator,
-                                    id_brygadzista = @Model.Wzm.IdBrygadzista,
-                                    id_maszyna = Model.Wzm.IdMaszyna,
-                                    zmiana = @Model.Wzm.IdZmiana,
-                                    id_zlecenie = @Model.Wzm.IdZlecenie,
-                                    data_meldunku = @Model.Wzm.DataMeldunku,
-                                    id_meldunku = @item.id
-                                    })
-                            }
-                        </h3>
-                    </div>
+                    <h3 class="panel-title">Meldunek @i</h3>
                 </div>
             </div>
             <div class="panel-body">
-                <div class="col-md-1">
-                    <div class="wysokosc">
-                        <h5>@Html.DisplayNameFor(model => model.ilosc)</h5>
+                <div class="row">
+                    <div class="col-md-1">
+                        <div class="wysokosc">
+                            <h5>@Html.DisplayNameFor(model => model.ilosc)</h5>
+                        </div>
+                        <div>
+                            <h4>@Html.DisplayFor(m => item.ilosc)</h4>
+                        </div>
                     </div>
-                    <div>
-                        <h4>@Html.DisplayFor(m => item.ilosc)</h4>
+                    <div class="col-md-1">
+                        <div class="wysokosc">
+                            <h5>@Html.DisplayNameFor(m => item.ilosc_wad_nn)</h5>
+                        </div>
+                        <div>
+                            <h4>@Html.DisplayFor(m => item.ilosc_wad_nn)</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="wysokosc">
+                            <h5>@Html.DisplayNameFor(model => model.ilosc_techn)</h5>
+                        </div>
+                        <div>
+                            <h4>@Html.DisplayFor(m => item.ilosc_techn)</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="wysokosc">
+                            <h5>Przegląd codzienny maszyny</h5>
+                        </div>
+                        <div>
+                            <h4>@Html.DisplayFor(m => item.opis_przeglad_codzienny_maszyny)</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="wysokosc">
+                            <h5>Nadzorowane parametry wtryskarki</h5>
+                        </div>
+                        <div>
+                            <h4>@Html.DisplayFor(m => item.opis_wynik_spr_wtr)</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="wysokosc">
+                            <h5>Wygląd zewnętrzny</h5>
+                        </div>
+                        <div>
+                            <h4>@Html.DisplayFor(m => item.opis_wyglad_zew)</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="wysokosc">
+                            <h5>Wygląd grzejnika</h5>
+                        </div>
+                        <div>
+                            <h4>@Html.DisplayFor(m => item.opis_wyglad_grzejnika)</h4>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-1">
-                    <div class="wysokosc">
-                        <h5>@Html.DisplayNameFor(m => item.ilosc_wad_nn)</h5>
+                @if (!item.zatwierdzony)
+                {
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            @Html.ActionLink("Popraw", "PoprawMeldunek", new
+                            {
+                            id_operator = @Model.Wzm.IdOperator,
+                            id_brygadzista = @Model.Wzm.IdBrygadzista,
+                            id_maszyna = Model.Wzm.IdMaszyna,
+                            zmiana = @Model.Wzm.IdZmiana,
+                            id_zlecenie = @Model.Wzm.IdZlecenie,
+                            data_meldunku = @Model.Wzm.DataMeldunku,
+                            id_meldunku = @item.id
+                            })
+                        </div>
                     </div>
-                    <div>
-                        <h4>@Html.DisplayFor(m => item.ilosc_wad_nn)</h4>
-                    </div>
-                </div>
-                <div class="col-md-1">
-                    <div class="wysokosc">
-                        <h5>@Html.DisplayNameFor(model => model.ilosc_techn)</h5>
-                    </div>
-                    <div>
-                        <h4>@Html.DisplayFor(m => item.ilosc_techn)</h4>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="wysokosc">
-                        <h5>Przegląd codzienny maszyny</h5>
-                    </div>
-                    <div>
-                        <h4>@Html.DisplayFor(m => item.opis_przeglad_codzienny_maszyny)</h4>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="wysokosc">
-                        <h5>Nadzorowane parametry wtryskarki</h5>
-                    </div>
-                    <div>
-                        <h4>@Html.DisplayFor(m => item.opis_wynik_spr_wtr)</h4>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="wysokosc">
-                        <h5>Wygląd zewnętrzny</h5>
-                    </div>
-                    <div>
-                        <h4>@Html.DisplayFor(m => item.opis_wyglad_zew)</h4>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="wysokosc">
-                        <h5>Wygląd grzejnika</h5>
-                    </div>
-                    <div>
-                        <h4>@Html.DisplayFor(m => item.opis_wyglad_grzejnika)</h4>
-                    </div>
-                </div>
+                }
             </div>
         </div>
         i++;
