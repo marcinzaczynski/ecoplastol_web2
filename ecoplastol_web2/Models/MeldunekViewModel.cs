@@ -10,7 +10,7 @@ namespace ecoplastol_web2.Models
 {
     public class MeldunekViewModel
     {
-        public int test { get; set; }
+        public string akcja { get; set; }
         public WyborZleceniaModel Wzm { get; set; }
         public List<meldunki_wynik> ListaWynikSprawdzenia { get; set; }
         public List<meldunki_wynik> ListaWygladZewnetrzny { get; set; }

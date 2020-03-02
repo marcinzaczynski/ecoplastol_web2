@@ -374,7 +374,7 @@ namespace ecoplastol_web2.db
             using (var db = new ecoplastolEntities())
             {
                 var list = (from m in db.meldunki_wady_nn
-                            where m.id_meldunek >= IdMeldunku
+                            where m.id_meldunek == IdMeldunku
                             orderby m.id ascending
                             select m).ToList();
                 return list;

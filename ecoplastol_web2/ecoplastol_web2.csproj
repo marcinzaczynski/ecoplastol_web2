@@ -329,7 +329,7 @@
     <Content Include="Views\Meldunek\NowyMeldunek.cshtml" />
     <Content Include="Views\Meldunek\PoprawMeldunek.cshtml" />
     <Content Include="Views\WyborZlecenia\_WyborZlecenia.cshtml" />
-    <Content Include="Views\Meldunek\_NowyMeldunek.cshtml" />
+    <Content Include="Views\Meldunek\SzczegolyMeldunku.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

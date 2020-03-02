@@ -14,9 +14,16 @@ namespace ecoplastol_web2.Controllers
         // GET: Meldunek
         public ActionResult ListaMeldunkow(WyborZleceniaModel _wzm)
         {
+            // "pokaż meldunki" z widoku wybór zlecenia
             mvm = new MeldunekViewModel(_wzm);
             return View(mvm);
         }
+
+        public ActionResult SzczegolyMeldunku(MeldunekViewModel _mvm)
+        {
+            return View(_mvm);
+        }
+
 
         // używany do action linka z listy meldunków, do dodawania nowego meldunku zanim zrobiłem na formularzu
         public ActionResult DodajMeldunek(int id_operator, int id_brygadzista, int id_maszyna, int id_zmiana, int id_zlecenie, DateTime data_meldunku)
@@ -29,6 +36,7 @@ namespace ecoplastol_web2.Controllers
         [HttpPost]
         public ActionResult NowyMeldunek(MeldunekViewModel _mvm)
         {
+            //przycisk "utworz meldunek" na liście meldunków
             WyborZleceniaModel wzm = new WyborZleceniaModel(_mvm.Wzm.IdOperator,
                                                           _mvm.Wzm.IdBrygadzista,
                                                           _mvm.Wzm.IdMaszyna,
@@ -36,12 +44,15 @@ namespace ecoplastol_web2.Controllers
                                                           _mvm.Wzm.IdZlecenie,
                                                           _mvm.Wzm.DataMeldunku);
             MeldunekViewModel mvm = new MeldunekViewModel(wzm);
-            return View(mvm);
+            mvm.akcja = "D";
+            return RedirectToAction("SzczegolyMeldunku", "Meldunek", mvm);
         }
 
         [HttpPost]
         public ActionResult DodajMeldunek(MeldunekViewModel _mvm)
         {
+            // przycisk "dodaj" z widoku nowy meldunek - zatwierdzenie dodania meldunku
+            // przycisk "popraw" z widoku poprawiania meldunku - zatwierdzenie poprawienia meldunku
             WyborZleceniaModel wzm = new WyborZleceniaModel(_mvm.Wzm.IdOperator,
                                                           _mvm.Wzm.IdBrygadzista,
                                                           _mvm.Wzm.IdMaszyna,
@@ -49,6 +60,7 @@ namespace ecoplastol_web2.Controllers
                                                           _mvm.Wzm.IdZlecenie,
                                                           _mvm.Wzm.DataMeldunku);
             MeldunekViewModel mvm = new MeldunekViewModel(wzm);
+            mvm.akcja = _mvm.akcja;
             mvm.ilosc = _mvm.ilosc;
             mvm.ilosc_techn = _mvm.ilosc_techn;
             mvm.godz_spr_wtr = _mvm.godz_spr_wtr;
@@ -65,10 +77,20 @@ namespace ecoplastol_web2.Controllers
             mvm.wnn6 = _mvm.wnn6;
             mvm.wnn7 = _mvm.wnn7;
             mvm.wnn8 = _mvm.wnn8;
-            mvm.wnn9 = _mvm.wnn9; 
+            mvm.wnn9 = _mvm.wnn9;
 
-            //teraz trzeba dodać meldunek do bazy
-            Meldunek_db.DodajMeldunek(mvm);
+            switch (mvm.akcja)
+            {
+                case "D":
+                    Meldunek_db.DodajMeldunek(mvm);
+                    break;
+                case "P":
+                    
+                    break;
+                default:
+                    break;
+            }
+            
             //powrót do listy meldunków
           
             return RedirectToAction("ListaMeldunkow", "Meldunek", wzm);
@@ -77,6 +99,7 @@ namespace ecoplastol_web2.Controllers
 
         public ActionResult PoprawMeldunek(int id_operator, int id_brygadzista, int id_maszyna, int zmiana, int id_zlecenie, DateTime data_meldunku, int id_meldunku)
         {
+            //przycisk "popraw" z widoku lista meldunków
             WyborZleceniaModel wzm = new WyborZleceniaModel(id_operator, id_brygadzista, id_maszyna, zmiana, id_zlecenie, data_meldunku);
             MeldunekViewModel mvm = new MeldunekViewModel(wzm);
             mvm.meldunek = mvm.ListaMeldunkow.Where(l => l.id == id_meldunku).FirstOrDefault();
@@ -89,6 +112,7 @@ namespace ecoplastol_web2.Controllers
             mvm.wyglad_grzejnika = mvm.meldunek.wyglad_grzejnika;
             mvm.przeglad_codz_masz = mvm.meldunek.przeglad_codz_masz;
             mvm.uwagi = mvm.meldunek.uwagi;
+            mvm.akcja = "P";
             foreach (var item in mvm.ListaWadNN)
             {
                 switch (item.id_wada_nn)
@@ -124,18 +148,12 @@ namespace ecoplastol_web2.Controllers
                         break;
                 }
             }
-            return View(mvm);
+            return View("NowyMeldunek",mvm);
         }
 
-        [HttpPost]
-        public ActionResult PoprawMeldunek(MeldunekViewModel _mvm)
+        public ActionResult CzyUsunacMeldunek(int id_meldunku)
         {
-            // update tabeli meldunki 
-
-            // update tabeli meldunki_wady_nn
-
             return HttpNotFound();
         }
-       
     }
 }
