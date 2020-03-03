@@ -52,6 +52,24 @@
                 default:
             }
         }
+
+        function iloscTechn(kierunek) {
+            var x = document.getElementById("ilosc_techn");
+            switch (kierunek) {
+                case 0: // down
+                    var y = parseInt(x.value);
+                    y = y - 1;
+                    if (y < 0) { y = 0; }
+                    x.value = y;
+                    break;
+                case 1: // up
+                    var y = parseInt(x.value);
+                    y = y + 1;
+                    x.value = y;
+                    break;
+                default:
+            }
+        }
     </script>
 }
 
@@ -59,6 +77,7 @@
 {
     @Html.AntiForgeryToken()
     @Html.TextBoxFor(model => model.akcja, new { @class = "hidden" })
+    @Html.TextBoxFor(model => model.id_meldunku, new { @class = "hidden" })
     @Html.TextBoxFor(model => model.Wzm.IdOperator, new { @class = "hidden" })
     @Html.TextBoxFor(model => model.Wzm.IdBrygadzista, new { @class = "hidden" })
     @Html.TextBoxFor(model => model.Wzm.IdMaszyna, new { @class = "hidden" })

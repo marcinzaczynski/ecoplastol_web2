@@ -351,6 +351,231 @@ namespace ecoplastol_web2.db
                 }
             }
         }
+
+        public static void PoprawMeldunek(MeldunekViewModel mvm)
+        {
+            meldunki meldunek = new meldunki();
+
+            using (var db = new ecoplastolEntities())
+            {
+                meldunek = (from m in db.meldunki
+                            where m.id >= mvm.id_meldunku
+                            select m).FirstOrDefault();
+                
+            }
+            // teraz tworzę meldunek
+            
+            //meldunek.id = Id;
+            //meldunek.id_zlecenie = mvm.Wzm.IdZlecenie;
+            //meldunek.id_operator = mvm.Wzm.IdOperator;
+            //meldunek.id_brygadzista = mvm.Wzm.IdBrygadzista;
+            //meldunek.id_zmiana = mvm.Wzm.IdZmiana;
+            //meldunek.data_meldunku = mvm.Wzm.DataMeldunku;
+            meldunek.ilosc = mvm.ilosc;
+            meldunek.ilosc_techn = mvm.ilosc_techn;
+            meldunek.godz_spr_wtr = DateTime.Now.TimeOfDay;
+            meldunek.wynik_spr_wtr = mvm.wynik_spr_wtr;
+            meldunek.wyglad_zew = mvm.wyglad_zew;
+            meldunek.wyglad_grzejnika = mvm.wyglad_grzejnika;
+            meldunek.przeglad_codz_masz = mvm.przeglad_codz_masz;
+            meldunek.uwagi = mvm.uwagi;
+            //meldunek.zatwierdzony = false;
+            //meldunek.opw = mvm.Wzm.Operator.login;
+            //meldunek.czasw = DateTime.Now;
+            meldunek.opm = mvm.Wzm.Operator.login;
+            meldunek.czasm = DateTime.Now;
+            
+            using (var db = new ecoplastolEntities())
+            {
+                db.Entry(meldunek).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+            // usuwam wnn
+            using (var db = new ecoplastolEntities())
+            {
+                var list = (from w in db.meldunki_wady_nn
+                            where w.id_meldunek == mvm.id_meldunku
+                            select w).ToList();
+                foreach (var detail in list)
+                {
+                    db.meldunki_wady_nn.Remove(detail);
+                }
+                db.SaveChanges();
+            }
+            // a teraz po kolei dodaje do bazy wady nn
+            if (mvm.wnn1 > 0)
+            {
+                meldunki_wady_nn wnn = new meldunki_wady_nn();
+                wnn.id = UstawMeldunekWadaId();
+                wnn.id_meldunek = mvm.id_meldunku;
+                wnn.id_zlecenie = mvm.Wzm.IdZlecenie;
+                wnn.id_wada_nn = 1;
+                wnn.ilosc = mvm.wnn1;
+                wnn.opw = mvm.Wzm.Operator.login;
+                wnn.czasw = DateTime.Now;
+                wnn.opm = mvm.Wzm.Operator.login;
+                wnn.czasm = DateTime.Now;
+                using (var db = new ecoplastolEntities())
+                {
+
+                    db.meldunki_wady_nn.Add(wnn);
+                    db.SaveChanges();
+                }
+            }
+            if (mvm.wnn2 > 0)
+            {
+                meldunki_wady_nn wnn = new meldunki_wady_nn();
+                wnn.id = UstawMeldunekWadaId();
+                wnn.id_meldunek = mvm.id_meldunku;
+                wnn.id_zlecenie = mvm.Wzm.IdZlecenie;
+                wnn.id_wada_nn = 2;
+                wnn.ilosc = mvm.wnn2;
+                wnn.opw = mvm.Wzm.Operator.login;
+                wnn.czasw = DateTime.Now;
+                wnn.opm = mvm.Wzm.Operator.login;
+                wnn.czasm = DateTime.Now;
+                using (var db = new ecoplastolEntities())
+                {
+
+                    db.meldunki_wady_nn.Add(wnn);
+                    db.SaveChanges();
+                }
+            }
+            if (mvm.wnn3 > 0)
+            {
+                meldunki_wady_nn wnn = new meldunki_wady_nn();
+                wnn.id = UstawMeldunekWadaId();
+                wnn.id_meldunek = mvm.id_meldunku;
+                wnn.id_zlecenie = mvm.Wzm.IdZlecenie;
+                wnn.id_wada_nn = 3;
+                wnn.ilosc = mvm.wnn3;
+                wnn.opw = mvm.Wzm.Operator.login;
+                wnn.czasw = DateTime.Now;
+                wnn.opm = mvm.Wzm.Operator.login;
+                wnn.czasm = DateTime.Now;
+                using (var db = new ecoplastolEntities())
+                {
+
+                    db.meldunki_wady_nn.Add(wnn);
+                    db.SaveChanges();
+                }
+            }
+            if (mvm.wnn4 > 0)
+            {
+                meldunki_wady_nn wnn = new meldunki_wady_nn();
+                wnn.id = UstawMeldunekWadaId();
+                wnn.id_meldunek = mvm.id_meldunku;
+                wnn.id_zlecenie = mvm.Wzm.IdZlecenie;
+                wnn.id_wada_nn = 4;
+                wnn.ilosc = mvm.wnn4;
+                wnn.opw = mvm.Wzm.Operator.login;
+                wnn.czasw = DateTime.Now;
+                wnn.opm = mvm.Wzm.Operator.login;
+                wnn.czasm = DateTime.Now;
+                using (var db = new ecoplastolEntities())
+                {
+
+                    db.meldunki_wady_nn.Add(wnn);
+                    db.SaveChanges();
+                }
+            }
+            if (mvm.wnn5 > 0)
+            {
+                meldunki_wady_nn wnn = new meldunki_wady_nn();
+                wnn.id = UstawMeldunekWadaId();
+                wnn.id_meldunek = mvm.id_meldunku;
+                wnn.id_zlecenie = mvm.Wzm.IdZlecenie;
+                wnn.id_wada_nn = 5;
+                wnn.ilosc = mvm.wnn5;
+                wnn.opw = mvm.Wzm.Operator.login;
+                wnn.czasw = DateTime.Now;
+                wnn.opm = mvm.Wzm.Operator.login;
+                wnn.czasm = DateTime.Now;
+                using (var db = new ecoplastolEntities())
+                {
+
+                    db.meldunki_wady_nn.Add(wnn);
+                    db.SaveChanges();
+                }
+            }
+            if (mvm.wnn6 > 0)
+            {
+                meldunki_wady_nn wnn = new meldunki_wady_nn();
+                wnn.id = UstawMeldunekWadaId();
+                wnn.id_meldunek = mvm.id_meldunku;
+                wnn.id_zlecenie = mvm.Wzm.IdZlecenie;
+                wnn.id_wada_nn = 6;
+                wnn.ilosc = mvm.wnn6;
+                wnn.opw = mvm.Wzm.Operator.login;
+                wnn.czasw = DateTime.Now;
+                wnn.opm = mvm.Wzm.Operator.login;
+                wnn.czasm = DateTime.Now;
+                using (var db = new ecoplastolEntities())
+                {
+
+                    db.meldunki_wady_nn.Add(wnn);
+                    db.SaveChanges();
+                }
+            }
+            if (mvm.wnn7 > 0)
+            {
+                meldunki_wady_nn wnn = new meldunki_wady_nn();
+                wnn.id = UstawMeldunekWadaId();
+                wnn.id_meldunek = mvm.id_meldunku;
+                wnn.id_zlecenie = mvm.Wzm.IdZlecenie;
+                wnn.id_wada_nn = 7;
+                wnn.ilosc = mvm.wnn7;
+                wnn.opw = mvm.Wzm.Operator.login;
+                wnn.czasw = DateTime.Now;
+                wnn.opm = mvm.Wzm.Operator.login;
+                wnn.czasm = DateTime.Now;
+                using (var db = new ecoplastolEntities())
+                {
+
+                    db.meldunki_wady_nn.Add(wnn);
+                    db.SaveChanges();
+                }
+            }
+            if (mvm.wnn8 > 0)
+            {
+                meldunki_wady_nn wnn = new meldunki_wady_nn();
+                wnn.id = UstawMeldunekWadaId();
+                wnn.id_meldunek = mvm.id_meldunku;
+                wnn.id_zlecenie = mvm.Wzm.IdZlecenie;
+                wnn.id_wada_nn = 8;
+                wnn.ilosc = mvm.wnn8;
+                wnn.opw = mvm.Wzm.Operator.login;
+                wnn.czasw = DateTime.Now;
+                wnn.opm = mvm.Wzm.Operator.login;
+                wnn.czasm = DateTime.Now;
+                using (var db = new ecoplastolEntities())
+                {
+
+                    db.meldunki_wady_nn.Add(wnn);
+                    db.SaveChanges();
+                }
+            }
+            if (mvm.wnn9 > 0)
+            {
+                meldunki_wady_nn wnn = new meldunki_wady_nn();
+                wnn.id = UstawMeldunekWadaId();
+                wnn.id_meldunek = mvm.id_meldunku;
+                wnn.id_zlecenie = mvm.Wzm.IdZlecenie;
+                wnn.id_wada_nn = 9;
+                wnn.ilosc = mvm.wnn9;
+                wnn.opw = mvm.Wzm.Operator.login;
+                wnn.czasw = DateTime.Now;
+                wnn.opm = mvm.Wzm.Operator.login;
+                wnn.czasm = DateTime.Now;
+                using (var db = new ecoplastolEntities())
+                {
+
+                    db.meldunki_wady_nn.Add(wnn);
+                    db.SaveChanges();
+                }
+            }
+        }
+
         public static int UstawMeldunekId()
         {
             using (var db = new ecoplastolEntities())
@@ -378,6 +603,33 @@ namespace ecoplastol_web2.db
                             orderby m.id ascending
                             select m).ToList();
                 return list;
+            }
+        }
+
+        public static void UsunMeldunek(int id_meldunku)
+        {
+            using (var db = new ecoplastolEntities())
+            {
+                var list = (from w in db.meldunki
+                            where w.id == id_meldunku
+                            select w).ToList();
+                foreach (var detail in list)
+                {
+                    db.meldunki.Remove(detail);
+                }
+                db.SaveChanges();
+            }
+
+            using (var db = new ecoplastolEntities())
+            {
+                var list = (from w in db.meldunki_wady_nn
+                            where w.id_meldunek == id_meldunku
+                            select w).ToList();
+                foreach (var detail in list)
+                {
+                    db.meldunki_wady_nn.Remove(detail);
+                }
+                db.SaveChanges();
             }
         }
     }

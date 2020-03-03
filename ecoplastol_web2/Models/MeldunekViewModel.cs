@@ -19,6 +19,7 @@ namespace ecoplastol_web2.Models
         public List<MeldunekView> ListaMeldunkow { get; set; }
         public List<meldunki_wady_nn> ListaWadNN { get; set; }
         public meldunki meldunek { get; set; }
+        public int id_meldunku { get; set; }
 
         [Required(ErrorMessage = "Podaj wartość z zakresu 0 - 999")]
         //[RegularExpression("[0-9]")]

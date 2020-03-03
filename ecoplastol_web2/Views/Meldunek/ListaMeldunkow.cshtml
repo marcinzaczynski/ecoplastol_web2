@@ -6,23 +6,6 @@
     }
 </style>
 
-<div>
-    @using (Html.BeginForm("NowyMeldunek", "Meldunek"))
-    {
-        @Html.AntiForgeryToken()
-
-        @Html.TextBoxFor(model => model.Wzm.IdOperator, new { @class = "hidden" })
-        @Html.TextBoxFor(model => model.Wzm.IdBrygadzista, new { @class = "hidden" })
-        @Html.TextBoxFor(model => model.Wzm.IdMaszyna, new { @class = "hidden" })
-        @Html.TextBoxFor(model => model.Wzm.IdZmiana, new { @class = "hidden" })
-        @Html.TextBoxFor(model => model.Wzm.IdZlecenie, new { @class = "hidden" })
-        @Html.TextBoxFor(model => model.Wzm.DataMeldunku, "{0:yyyy-MM-dd}", new { @class = "form-control hidden", type="date"})
-        <div class="form-group">
-                <input type="submit" value="Utwórz meldunek" class="btn btn-info" />
-        </div>
-    }
-</div>
-
 <div class="panel panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title">Dane operatora</h3>
@@ -36,6 +19,20 @@
         </div>
     </div>
 </div>
+
+<div class="form-group row">
+    @Html.ActionLink("Utwórz meldunek", "NowyMeldunek", new
+                    {
+                    id_operator = @Model.Wzm.IdOperator,
+                    id_brygadzista = @Model.Wzm.IdBrygadzista,
+                    id_maszyna = Model.Wzm.IdMaszyna,
+                    id_zmiana = @Model.Wzm.IdZmiana,
+                    id_zlecenie = @Model.Wzm.IdZlecenie,
+                    data_meldunku = @Model.Wzm.DataMeldunku,
+                    }, new { @class = "btn btn-success btn-large btn-block" })
+</div>
+
+
 @{
     int i = 1;
     foreach (var item in Model.ListaMeldunkow)
@@ -43,7 +40,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <div class="row">
-                    <h3 class="panel-title">Meldunek @i</h3>
+                    <h3 class="panel-title">Meldunek @i (id:@item.id)</h3>
                 </div>
             </div>
             <div class="panel-body">
@@ -111,18 +108,24 @@
                 <div class="col-md-6">
                     @Html.ActionLink("Popraw", "PoprawMeldunek", new
                     {
-                    id_operator = @Model.Wzm.IdOperator,
-                    id_brygadzista = @Model.Wzm.IdBrygadzista,
-                    id_maszyna = Model.Wzm.IdMaszyna,
-                    zmiana = @Model.Wzm.IdZmiana,
-                    id_zlecenie = @Model.Wzm.IdZlecenie,
-                    data_meldunku = @Model.Wzm.DataMeldunku,
-                    id_meldunku = @item.id
+                        id_operator = @Model.Wzm.IdOperator,
+                        id_brygadzista = @Model.Wzm.IdBrygadzista,
+                        id_maszyna = Model.Wzm.IdMaszyna,
+                        id_zmiana = @Model.Wzm.IdZmiana,
+                        id_zlecenie = @Model.Wzm.IdZlecenie,
+                        data_meldunku = @Model.Wzm.DataMeldunku,
+                        id_meldunku = @item.id
                     }, new { @class = "btn btn-info btn-large btn-block" })
                 </div>
                 <div class="col-md-6">
                     @Html.ActionLink("Usuń", "CzyUsunacMeldunek", new
                     {
+                        id_operator = @Model.Wzm.IdOperator,
+                        id_brygadzista = @Model.Wzm.IdBrygadzista,
+                        id_maszyna = Model.Wzm.IdMaszyna,
+                        id_zmiana = @Model.Wzm.IdZmiana,
+                        id_zlecenie = @Model.Wzm.IdZlecenie,
+                        data_meldunku = @Model.Wzm.DataMeldunku,
                         id_meldunku = @item.id
                     }, new { @class = "btn btn-danger btn-large btn-block" })
                 </div>

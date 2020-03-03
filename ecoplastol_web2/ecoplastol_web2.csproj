@@ -326,10 +326,9 @@
     <Content Include="Views\WyborZlecenia\WyborZlecenia.cshtml" />
     <Content Include="Views\Test\TestAction.cshtml" />
     <Content Include="Views\Meldunek\ListaMeldunkow.cshtml" />
-    <Content Include="Views\Meldunek\NowyMeldunek.cshtml" />
-    <Content Include="Views\Meldunek\PoprawMeldunek.cshtml" />
     <Content Include="Views\WyborZlecenia\_WyborZlecenia.cshtml" />
     <Content Include="Views\Meldunek\SzczegolyMeldunku.cshtml" />
+    <Content Include="Views\Meldunek\CzyUsunacMeldunek.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
